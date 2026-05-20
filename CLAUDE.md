@@ -29,11 +29,15 @@ Each game is a **single self-contained HTML file** with three co-located section
 
 When adding new games, follow the same single-file pattern.
 
-## Git workflow (required every session)
+## Git workflow — MANDATORY
 
-After every meaningful code change:
-1. Stage files by name (e.g. `git add coin_flip.html`)
-2. Commit with an imperative-mood message under 72 chars
-3. Push: `git push origin main`
+**Every meaningful change must be committed and pushed to GitHub immediately.** Do not batch up changes across multiple features. Commit early and often so work is never lost.
+
+Rules:
+1. Stage files by name (e.g. `git add coin_flip.html`) — never `git add .` or `git add -A`
+2. Write a clean imperative-mood commit message under 72 chars (e.g. `Add sound effects to coin flip`)
+3. Push immediately after every commit: `git push origin main`
 
 GitHub remote: `https://github.com/brentrobingreen/gut-biome-app`
+
+This applies after every bug fix, feature addition, content change, or config update — no exceptions.

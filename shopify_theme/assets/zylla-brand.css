@@ -504,6 +504,88 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════
+   Product page — main-product overrides
+════════════════════════════════════════════════════════ */
+
+/* Off-white page background */
+product-info,
+.product-info,
+.template-product .shopify-section { background: var(--zylla-off-white); }
+
+/* Product title */
+.product__title h1,
+.product__title .h1 {
+  font-family: var(--zylla-font-display) !important;
+  font-size: clamp(3rem, 3.5vw, 5rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--zylla-black) !important;
+  line-height: 1.05 !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* Hide the duplicate h2 link Dawn renders inside .product__title */
+.product__title a.product__title { display: none !important; }
+
+/* Price */
+.price .price__regular .price-item--regular,
+.price .price__sale .price-item--sale {
+  font-family: var(--zylla-font-body) !important;
+  font-size: 2.2rem !important;
+  font-weight: 600 !important;
+  color: var(--zylla-black) !important;
+}
+
+.price .price__badges { margin-left: 1rem; }
+
+/* Description */
+.product__description {
+  font-size: 1.5rem !important;
+  line-height: 1.8 !important;
+  color: var(--zylla-mid) !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Add to cart button */
+.product-form__submit {
+  background: var(--zylla-black) !important;
+  color: #fff !important;
+  border: 2px solid var(--zylla-black) !important;
+  border-radius: var(--zylla-radius-pill) !important;
+  font-family: var(--zylla-font-body) !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  padding: 1.6rem 3.6rem !important;
+  height: auto !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.product-form__submit:hover:not([disabled]) {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(26,26,26,0.25) !important;
+}
+
+/* Quantity selector */
+.quantity {
+  border-color: var(--zylla-border) !important;
+  border-radius: var(--zylla-radius-sm) !important;
+}
+
+.quantity__button { color: var(--zylla-black) !important; }
+.quantity__input  { font-family: var(--zylla-font-body) !important; }
+
+/* Media gallery — remove default background tint */
+.product__media-item .media { background: var(--zylla-light) !important; border-radius: var(--zylla-radius-card); }
+
+/* Thumbnail strip */
+.thumbnail-slider__button.is-active { border-color: var(--zylla-black) !important; }
+
+/* Tax/shipping note */
+.product__tax { font-size: 1.2rem !important; color: var(--zylla-mid) !important; }
+
+/* ═══════════════════════════════════════════════════════
    Announcement bar override
 ════════════════════════════════════════════════════════ */
 .announcement-bar {

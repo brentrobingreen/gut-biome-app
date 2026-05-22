@@ -343,13 +343,18 @@
           <div class="zylla-ugc__reel" {{ block.shopify_attributes }}>
 
             {%- if block.settings.video != blank -%}
-              {{- block.settings.video | video_tag:
-                  autoplay: true,
-                  loop: true,
-                  muted: true,
-                  playsinline: true,
-                  poster: block.settings.poster | image_url: width: 600
-              -}}
+              {%- assign vid = block.settings.video -%}
+              {%- if block.settings.poster != blank -%}
+                {%- assign poster_url = block.settings.poster | image_url: width: 600 -%}
+              {%- endif -%}
+              <video autoplay muted loop playsinline
+                {% if poster_url %}poster="{{ poster_url }}"{% endif %}
+                style="width:100%;height:100%;object-fit:cover;display:block;"
+              >
+                {%- for source in vid.sources -%}
+                  <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                {%- endfor -%}
+              </video>
             {%- elsif block.settings.poster != blank -%}
               <img
                 src="{{ block.settings.poster | image_url: width: 600 }}"

@@ -1,0 +1,521 @@
+/* ═══════════════════════════════════════════════════════
+   Zylla Brand Foundation
+   Imported after base.css — overrides theme defaults
+════════════════════════════════════════════════════════ */
+
+/* ── Design tokens ────────────────────────────────────── */
+:root {
+  --zylla-off-white:   #FAFAF8;
+  --zylla-black:       #1A1A1A;
+  --zylla-mid:         #6B6B6B;
+  --zylla-light:       #F0F0EC;
+  --zylla-border:      #E4E4E0;
+
+  /* Per-product accent palette */
+  --zylla-creatine:    #4B8FD4;
+  --zylla-sleep:       #9B8EC4;
+  --zylla-glow:        #E8A097;
+  --zylla-fiber:       #7BAE7F;
+  --zylla-energy:      #F5C518;
+
+  /* Typography */
+  --zylla-font-display: 'DM Serif Display', Georgia, serif;
+  --zylla-font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout */
+  --zylla-max-width:    1280px;
+  --zylla-gutter:       clamp(2rem, 5vw, 6rem);
+  --zylla-section-gap: clamp(6rem, 10vw, 12rem);
+
+  /* Shape */
+  --zylla-radius-pill: 100px;
+  --zylla-radius-card: 20px;
+  --zylla-radius-sm:   8px;
+}
+
+/* ── Global ──────────────────────────────────────────── */
+body {
+  background-color: var(--zylla-off-white);
+  color: var(--zylla-black);
+  font-family: var(--zylla-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Sticky header shell (Shopify section wrapper) ───── */
+.section-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--zylla-off-white);
+  border-bottom: 1px solid var(--zylla-border);
+  transition: box-shadow 0.25s ease;
+  margin-bottom: 0 !important;
+}
+
+.section-header.scrolled-past-header {
+  box-shadow: 0 2px 24px rgba(26,26,26,0.06);
+}
+
+/* Shopify sticky header animation */
+.shopify-section-header-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.shopify-section-header-hidden {
+  top: calc(-1 * var(--header-height, 70px));
+}
+
+.shopify-section-header-sticky.animate {
+  transition: top 0.2s ease;
+}
+
+/* ── Header layout ───────────────────────────────────── */
+.zylla-header {
+  max-width: var(--zylla-max-width);
+  margin: 0 auto;
+  padding: 0 var(--zylla-gutter);
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Left col */
+.zylla-header__left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+/* Center col: absolutely centered so it doesn't push left/right */
+.zylla-header__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+/* Right col */
+.zylla-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* ── Logo ────────────────────────────────────────────── */
+.zylla-logo {
+  font-family: var(--zylla-font-display);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--zylla-black);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.zylla-logo-heading {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* ── Desktop nav ─────────────────────────────────────── */
+.zylla-nav-wrap { display: flex; }
+
+.zylla-nav {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.zylla-nav__link {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--zylla-black);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.zylla-nav__link:hover,
+.zylla-nav__link--active { opacity: 1; }
+
+/* ── Header icon buttons ─────────────────────────────── */
+.zylla-header__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  color: var(--zylla-black);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.zylla-header__icon .svg-wrapper,
+.zylla-header__icon svg {
+  display: flex;
+  width: 22px;
+  height: 22px;
+}
+
+.zylla-header__icon .svg-wrapper svg {
+  width: 22px;
+  height: 22px;
+  color: var(--zylla-black);
+  stroke: var(--zylla-black);
+}
+
+/* Cart bubble count */
+.zylla-header__icon .cart-count-bubble {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--zylla-black);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0 3px;
+}
+
+/* ── Mobile hamburger ────────────────────────────────── */
+.zylla-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem;
+  list-style: none;
+}
+
+.zylla-hamburger__line {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--zylla-black);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* ── Mobile logo visibility ──────────────────────────── */
+.zylla-logo--mobile { display: none; }
+.zylla-logo--desktop { display: block; }
+
+/* ── Responsive: mobile header ───────────────────────── */
+@media (max-width: 989px) {
+  .zylla-hamburger      { display: flex; }
+  .zylla-nav-wrap       { display: none; }
+  .zylla-logo--desktop  { display: none; }
+  .zylla-logo--mobile   { display: block; }
+
+  /* Make header-drawer sit in the flow */
+  header-drawer { display: block; }
+}
+
+@media (min-width: 990px) {
+  header-drawer { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Footer
+════════════════════════════════════════════════════════ */
+.zylla-footer {
+  background: var(--zylla-black);
+  color: rgba(255,255,255,0.75);
+  padding: 7rem var(--zylla-gutter) 4rem;
+  font-family: var(--zylla-font-body);
+}
+
+.zylla-footer__inner {
+  max-width: var(--zylla-max-width);
+  margin: 0 auto;
+}
+
+.zylla-footer__top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+  gap: 4rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Brand column */
+.zylla-footer .zylla-logo {
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 1.6rem;
+}
+
+.zylla-footer__tagline {
+  font-size: 1.35rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.45);
+  max-width: 260px;
+  margin-bottom: 2.4rem;
+}
+
+.zylla-footer__social {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.zylla-footer__social-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.zylla-footer__social-link:hover { color: #fff; }
+
+/* Nav columns */
+.zylla-footer__col-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 2rem;
+}
+
+.zylla-footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.zylla-footer__links a {
+  font-size: 1.35rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.zylla-footer__links a:hover { color: #fff; }
+
+/* Newsletter column */
+.zylla-footer__newsletter-text {
+  font-size: 1.35rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
+}
+
+.zylla-footer__newsletter-form {
+  display: flex;
+}
+
+.zylla-footer__newsletter-input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-right: none;
+  border-radius: var(--zylla-radius-pill) 0 0 var(--zylla-radius-pill);
+  padding: 1.1rem 1.8rem;
+  font-family: var(--zylla-font-body);
+  font-size: 1.3rem;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.zylla-footer__newsletter-input:focus {
+  border-color: rgba(255,255,255,0.35);
+}
+
+.zylla-footer__newsletter-input::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+
+.zylla-footer__newsletter-btn {
+  background: #fff;
+  color: var(--zylla-black);
+  border: none;
+  border-radius: 0 var(--zylla-radius-pill) var(--zylla-radius-pill) 0;
+  padding: 1.1rem 2rem;
+  font-family: var(--zylla-font-body);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.zylla-footer__newsletter-btn:hover { opacity: 0.85; }
+
+/* Bottom bar */
+.zylla-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  padding-top: 3rem;
+}
+
+.zylla-footer__copyright {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.zylla-footer__copyright a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.zylla-footer__policies {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.zylla-footer__policies a {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.zylla-footer__policies a:hover { color: rgba(255,255,255,0.7); }
+
+.zylla-footer__payment {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.zylla-footer__payment .icon {
+  height: 24px;
+  opacity: 0.5;
+  filter: brightness(0) invert(1);
+}
+
+/* Responsive footer */
+@media (max-width: 989px) {
+  .zylla-footer__top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 599px) {
+  .zylla-footer__top { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Utility: Buttons
+════════════════════════════════════════════════════════ */
+.zylla-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.4rem 3.2rem;
+  border-radius: var(--zylla-radius-pill);
+  font-family: var(--zylla-font-body);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  line-height: 1;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.zylla-btn:hover  { transform: translateY(-2px); }
+.zylla-btn:active { transform: translateY(0); }
+
+.zylla-btn--primary {
+  background: var(--zylla-black);
+  color: #fff;
+  border-color: var(--zylla-black);
+}
+
+.zylla-btn--primary:hover {
+  box-shadow: 0 6px 20px rgba(26,26,26,0.25);
+}
+
+.zylla-btn--outline {
+  background: transparent;
+  color: var(--zylla-black);
+  border-color: var(--zylla-black);
+}
+
+.zylla-btn--white {
+  background: #fff;
+  color: var(--zylla-black);
+  border-color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Utility: Typography helpers
+════════════════════════════════════════════════════════ */
+.zylla-display {
+  font-family: var(--zylla-font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.zylla-eyebrow {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--zylla-mid);
+}
+
+/* ═══════════════════════════════════════════════════════
+   Announcement bar override
+════════════════════════════════════════════════════════ */
+.announcement-bar {
+  background: var(--zylla-black) !important;
+  color: rgba(255,255,255,0.9) !important;
+}
+
+.announcement-bar__message,
+.announcement-bar a {
+  color: inherit !important;
+  font-family: var(--zylla-font-body) !important;
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+}

@@ -1,0 +1,139 @@
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+
+<footer class="zylla-footer">
+  <div class="zylla-footer__inner">
+
+    <div class="zylla-footer__top">
+
+      {%- comment -%} Column 1: Brand {%- endcomment -%}
+      <div class="zylla-footer__brand">
+        <a href="{{ routes.root_url }}" class="zylla-logo">Zylla</a>
+        <p class="zylla-footer__tagline">
+          Functional wellness supplements designed to fit your busy life.
+        </p>
+        <div class="zylla-footer__social">
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" class="zylla-footer__social-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+          {%- endif -%}
+          {%- if settings.social_tiktok_link != blank -%}
+            <a href="{{ settings.social_tiktok_link }}" class="zylla-footer__social-link" target="_blank" rel="noopener noreferrer">TikTok</a>
+          {%- endif -%}
+          {%- if settings.social_facebook_link != blank -%}
+            <a href="{{ settings.social_facebook_link }}" class="zylla-footer__social-link" target="_blank" rel="noopener noreferrer">Facebook</a>
+          {%- endif -%}
+          {%- if settings.social_youtube_link != blank -%}
+            <a href="{{ settings.social_youtube_link }}" class="zylla-footer__social-link" target="_blank" rel="noopener noreferrer">YouTube</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Column 2: Shop {%- endcomment -%}
+      <div>
+        <p class="zylla-footer__col-title">Shop</p>
+        <ul class="zylla-footer__links">
+          <li><a href="/collections/all">All Products</a></li>
+          <li><a href="/collections/all#creatine">Creatine</a></li>
+          <li><a href="/collections/all#sleep">Sleep</a></li>
+          <li><a href="/collections/all#glow">Glow</a></li>
+          <li><a href="/collections/all#fiber">Fiber</a></li>
+          <li><a href="/collections/all#energy">Energy</a></li>
+          <li><a href="/pages/subscribe">Subscribe &amp; Save</a></li>
+        </ul>
+      </div>
+
+      {%- comment -%} Column 3: Company {%- endcomment -%}
+      <div>
+        <p class="zylla-footer__col-title">Company</p>
+        <ul class="zylla-footer__links">
+          <li><a href="/pages/about">About Zylla</a></li>
+          <li><a href="/pages/ingredients">Our Ingredients</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+          {%- if section.settings.show_policy -%}
+            {%- for policy in shop.policies -%}
+              {%- if policy != blank -%}
+                <li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </div>
+
+      {%- comment -%} Column 4: Newsletter {%- endcomment -%}
+      <div>
+        <p class="zylla-footer__col-title">Stay in the loop</p>
+        <p class="zylla-footer__newsletter-text">
+          New products, wellness tips, and subscriber-only deals.
+        </p>
+        {%- form 'customer', id: 'ContactFooter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="zylla-footer__newsletter-form">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="zylla-footer__newsletter-input"
+              value="{{ form.email }}"
+              placeholder="Your email"
+              aria-label="Email for newsletter"
+              autocomplete="email"
+              {% if form.errors %}aria-invalid="true"{% endif %}
+              required
+            >
+            <button type="submit" class="zylla-footer__newsletter-btn" name="commit">
+              Join
+            </button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p style="color:rgba(255,255,255,0.7);font-size:1.3rem;margin-top:1rem;">
+              {{ 'newsletter.success' | t }}
+            </p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p style="color:#ff8a7a;font-size:1.3rem;margin-top:1rem;">
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
+    </div>{%- comment -%} /.zylla-footer__top {%- endcomment -%}
+
+    <div class="zylla-footer__bottom">
+      <p class="zylla-footer__copyright">
+        &copy; {{ 'now' | date: '%Y' }} <a href="{{ routes.root_url }}">Zylla</a>. All rights reserved.
+      </p>
+      {%- if section.settings.payment_enable -%}
+        <div class="zylla-footer__payment">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    { "type": "@app" }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "t:sections.footer.settings.show_policy.label"
+    }
+  ]
+}
+{% endschema %}

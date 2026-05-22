@@ -82,9 +82,21 @@
   .zylla-maybe { color: var(--zylla-mid); font-size: 1.2rem; font-weight: 500; }
 
   @media (max-width: 767px) {
-    .zylla-compare__inner { grid-template-columns: 1fr; }
+    .zylla-compare { padding: var(--zylla-section-gap) 1.2rem; }
+    .zylla-compare__inner { grid-template-columns: 1fr; gap: 3.2rem; }
+    .zylla-compare__heading { font-size: clamp(2.6rem, 8vw, 3.6rem); margin-bottom: 1.2rem; }
+    .zylla-compare__subtext { font-size: 1.35rem; }
+    .zylla-compare__table { font-size: 1.05rem; }
     .zylla-compare__table th,
-    .zylla-compare__table td { padding: 1rem 1.2rem; font-size: 1.2rem; }
+    .zylla-compare__table td { padding: 0.75rem 0.4rem; }
+    .zylla-compare__table th:first-child,
+    .zylla-compare__table td:first-child { min-width: 80px; width: 26%; padding-left: 0.5rem; }
+    .zylla-compare__table th.zylla-col { font-size: 1rem; padding: 1rem 0.4rem; }
+    .zylla-compare__table th:not(:first-child):not(.zylla-col) { font-size: 0.9rem; letter-spacing: 0; }
+    .zylla-check { font-size: 1.3rem; }
+    .zylla-cross { font-size: 1.2rem; }
+    .zylla-maybe { font-size: 0; }
+    .zylla-maybe::before { content: "~"; font-size: 1.3rem; color: var(--zylla-mid); font-weight: 500; }
   }
 </style>
 

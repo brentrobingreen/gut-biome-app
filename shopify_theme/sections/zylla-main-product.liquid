@@ -352,10 +352,27 @@
   }
 
   @media (max-width: 767px) {
-    .zylla-pdp__inner { grid-template-columns: 1fr; }
+    .zylla-pdp { padding: 2rem var(--zylla-gutter) 2.4rem; }
+    .zylla-pdp__inner { grid-template-columns: 1fr; gap: 2.8rem; }
     .zylla-pdp-gallery { position: static; }
-    .zylla-pdp__trust { flex-wrap: wrap; }
-    .zylla-pdp__trust-item { min-width: calc(33% - 0.8rem); }
+    .zylla-pdp-gallery__main { border-radius: 14px; }
+    .zylla-pdp__title { font-size: clamp(2.6rem, 8vw, 3.8rem); margin-bottom: 1rem; }
+    .zylla-pdp__stars { margin-bottom: 1.6rem; }
+    .zylla-pdp__bullets { margin-bottom: 2rem; }
+    .zylla-pdp__purchase-type { gap: 0.8rem; }
+    .zylla-pdp__pt-card { border-radius: 12px; }
+    .zylla-pdp__pt-main { padding: 1.2rem 1.4rem; gap: 1rem; }
+    .zylla-pdp__pt-price { font-size: 1.6rem; }
+    .zylla-pdp__atc { height: 52px; font-size: 1.3rem; }
+    .zylla-pdp__trust { flex-wrap: wrap; gap: 1rem; }
+    .zylla-pdp__trust-item { min-width: calc(33% - 0.7rem); }
+    .zylla-pdp__trust-icon svg { width: 28px; height: 28px; }
+    .zylla-pdp__trust-text { font-size: 1.05rem; }
+    .zylla-pdp-sticky { padding: 1rem 1.6rem; }
+  }
+
+  @media (max-width: 400px) {
+    .zylla-pdp__trust-item { min-width: calc(50% - 0.5rem); }
   }
 </style>
 

@@ -53,7 +53,12 @@
   }
 
   @media (max-width: 767px) {
-    .zylla-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 3.2rem 2rem; }
+    .zylla-stats__card { padding: 3.2rem 2rem; border-radius: 16px; }
+    .zylla-stats__subtext { margin-bottom: 3.2rem; }
+    .zylla-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 2.8rem 2rem; }
+    .zylla-stat__number { font-size: clamp(3.2rem, 10vw, 5rem); }
+    .zylla-stat__label { font-size: 1.3rem; }
+    .zylla-stats__disclaimer { margin-top: 2.8rem; }
   }
 </style>
 

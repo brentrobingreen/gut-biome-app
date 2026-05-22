@@ -52,6 +52,22 @@
         "accent_color": "#F5C518"
       }
     },
+    "ugc": {
+      "type": "zylla-ugc-reel",
+      "blocks": {
+        "u1": { "type": "reel", "settings": { "username": "michaelb.swe", "caption": "Gave up coffee 6 months ago. This replaced it completely. Same energy, zero anxiety. #zylla #energy" } },
+        "u2": { "type": "reel", "settings": { "username": "laurena.teach", "caption": "The L-Theanine makes all the difference. Caffeine with the edges smoothed off. @zylla is incredible. #zyllaenergy" } },
+        "u3": { "type": "reel", "settings": { "username": "chrisp.pt", "caption": "6am before the gym. By 6:30 I'm warm, focused, ready. No jitters, no racing heart. #zylla" } },
+        "u4": { "type": "reel", "settings": { "username": "sophiel.dsn", "caption": "I have ADHD and am sensitive to stimulants. This is the only caffeinated product I can take. #zylla #adhd" } },
+        "u5": { "type": "reel", "settings": { "username": "hannahm.law", "caption": "My afternoon slump was ruining my productivity. 2pm sachet changed everything. #zyllaenergy" } },
+        "u6": { "type": "reel", "settings": { "username": "ryancleanenergy", "caption": "Switched from pre-workout to this. Way smoother, way cleaner. No crash. #zylla #naturalenergy" } }
+      },
+      "block_order": ["u1","u2","u3","u4","u5","u6"],
+      "settings": {
+        "heading": "From the Zylla community.",
+        "subtext": "Real customers. Real routines. Tag us @zylla to be featured."
+      }
+    },
     "reviews": {
       "type": "zylla-reviews-carousel",
       "blocks": {
@@ -96,5 +112,5 @@
       "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
     }
   },
-  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+  "order": ["main","benefits","stats","ugc","reviews","comparison","accordion","pair"]
 }

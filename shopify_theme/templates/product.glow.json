@@ -52,6 +52,22 @@
         "accent_color": "#E8A097"
       }
     },
+    "ugc": {
+      "type": "zylla-ugc-reel",
+      "blocks": {
+        "u1": { "type": "reel", "settings": { "username": "sofiar.teach", "caption": "My dermatologist noticed the difference before I told her I was taking anything. #zylla #collagen" } },
+        "u2": { "type": "reel", "settings": { "username": "rachelt.mktg", "caption": "Nails used to peel constantly. Two months in and they're long and strong. @zylla thank you! #glow" } },
+        "u3": { "type": "reel", "settings": { "username": "priyan.yoga", "caption": "In my morning water like a tea. Tasteless, effortless, and my skin genuinely glows. #zylla #marinecollagen" } },
+        "u4": { "type": "reel", "settings": { "username": "laurend.rn", "caption": "Taken collagen for years in every form. This sachet format is by far the best. #zyllaglow" } },
+        "u5": { "type": "reel", "settings": { "username": "carolineh.dsn", "caption": "Fine lines around my eyes are noticeably reduced. I'm that person recommending supplements now. #zylla" } },
+        "u6": { "type": "reel", "settings": { "username": "emmaskinglow", "caption": "4 weeks. That's all it took before I started getting comments about my skin. #zylla #collagen" } }
+      },
+      "block_order": ["u1","u2","u3","u4","u5","u6"],
+      "settings": {
+        "heading": "From the Zylla community.",
+        "subtext": "Real customers. Real routines. Tag us @zylla to be featured."
+      }
+    },
     "reviews": {
       "type": "zylla-reviews-carousel",
       "blocks": {
@@ -96,5 +112,5 @@
       "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
     }
   },
-  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+  "order": ["main","benefits","stats","ugc","reviews","comparison","accordion","pair"]
 }

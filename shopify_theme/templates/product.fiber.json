@@ -52,6 +52,22 @@
         "accent_color": "#7BAE7F"
       }
     },
+    "ugc": {
+      "type": "zylla-ugc-reel",
+      "blocks": {
+        "u1": { "type": "reel", "settings": { "username": "alicem.physio", "caption": "15 years of IBS. This is the gentlest supplement I've tried, and it genuinely works. #zylla #guthealth" } },
+        "u2": { "type": "reel", "settings": { "username": "olivias.pr", "caption": "Bye bye afternoon bloat. Every morning and the difference by lunchtime is real. @zylla #fiber" } },
+        "u3": { "type": "reel", "settings": { "username": "drjamesk.gp", "caption": "The prebiotic AND probiotic combo is what makes this different. As a GP I was sceptical — it works. #zylla" } },
+        "u4": { "type": "reel", "settings": { "username": "sam.t.accounts", "caption": "Energy levels improved too, which I wasn't expecting. A healthy gut really does affect everything. #zyllafiber" } },
+        "u5": { "type": "reel", "settings": { "username": "katier.teach", "caption": "Mixes clear in water. 5 seconds every morning. 3 months consistent and never going back. #zylla" } },
+        "u6": { "type": "reel", "settings": { "username": "miagutjourney", "caption": "My gut has never felt better. First two weeks and I already noticed a difference. #zylla #guthealth" } }
+      },
+      "block_order": ["u1","u2","u3","u4","u5","u6"],
+      "settings": {
+        "heading": "From the Zylla community.",
+        "subtext": "Real customers. Real routines. Tag us @zylla to be featured."
+      }
+    },
     "reviews": {
       "type": "zylla-reviews-carousel",
       "blocks": {
@@ -96,5 +112,5 @@
       "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
     }
   },
-  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+  "order": ["main","benefits","stats","ugc","reviews","comparison","accordion","pair"]
 }

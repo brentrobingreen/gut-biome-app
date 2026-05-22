@@ -52,6 +52,22 @@
         "accent_color": "#9B8EC4"
       }
     },
+    "ugc": {
+      "type": "zylla-ugc-reel",
+      "blocks": {
+        "u1": { "type": "reel", "settings": { "username": "clairem.pm", "caption": "10 years of insomnia. Week 2 of Zylla Sleep and I'm getting 7 solid hours. Unreal. #zylla #sleep" } },
+        "u2": { "type": "reel", "settings": { "username": "tomfounds", "caption": "No more racing mind at 11pm. The L-Theanine is genuinely calming. @zylla you've changed my evenings." } },
+        "u3": { "type": "reel", "settings": { "username": "jess.nurse", "caption": "Tried melatonin, magnesium tablets, everything. This is the only thing that actually worked. #zyllasleep" } },
+        "u4": { "type": "reel", "settings": { "username": "david.k.dev", "caption": "I wake up and feel *awake*. No grogginess. No hangover. Just actually rested. #zylla" } },
+        "u5": { "type": "reel", "settings": { "username": "annafinance", "caption": "Apple Watch sleep score: 68 → 84 in three weeks. Whatever is in this sachet, it's working. #zylla" } },
+        "u6": { "type": "reel", "settings": { "username": "mikesleep", "caption": "30 minutes before bed, warm water, done. My whole night routine is now this one sachet. #zylla" } }
+      },
+      "block_order": ["u1","u2","u3","u4","u5","u6"],
+      "settings": {
+        "heading": "From the Zylla community.",
+        "subtext": "Real customers. Real routines. Tag us @zylla to be featured."
+      }
+    },
     "reviews": {
       "type": "zylla-reviews-carousel",
       "blocks": {
@@ -96,5 +112,5 @@
       "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
     }
   },
-  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+  "order": ["main","benefits","stats","ugc","reviews","comparison","accordion","pair"]
 }

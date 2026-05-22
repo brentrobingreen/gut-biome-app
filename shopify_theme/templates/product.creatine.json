@@ -52,6 +52,22 @@
         "accent_color": "#4B8FD4"
       }
     },
+    "ugc": {
+      "type": "zylla-ugc-reel",
+      "blocks": {
+        "u1": { "type": "reel", "settings": { "username": "marcust_lifts", "caption": "Two months in — stronger and more focused. This is now non-negotiable in my routine. #zylla #creatine" } },
+        "u2": { "type": "reel", "settings": { "username": "sarahfitlife", "caption": "Lifts are up, recovery is faster. Can't believe I waited this long to try sachets. #zylla" } },
+        "u3": { "type": "reel", "settings": { "username": "james.runs", "caption": "Add it to my morning coffee and that's it. Zero taste, zero effort. @zylla is the move." } },
+        "u4": { "type": "reel", "settings": { "username": "emilycycles", "caption": "No chalky residue, no measuring. Finally a creatine that fits my life. #zyllasupps" } },
+        "u5": { "type": "reel", "settings": { "username": "brentg.health", "caption": "Stronger, recovered faster, and my focus at work improved too. Wild. #zylla" } },
+        "u6": { "type": "reel", "settings": { "username": "dan_gainz", "caption": "Sachet format is a game changer. I actually take it every single day now. #creatine #zylla" } }
+      },
+      "block_order": ["u1","u2","u3","u4","u5","u6"],
+      "settings": {
+        "heading": "From the Zylla community.",
+        "subtext": "Real customers. Real routines. Tag us @zylla to be featured."
+      }
+    },
     "reviews": {
       "type": "zylla-reviews-carousel",
       "blocks": {
@@ -96,5 +112,5 @@
       "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
     }
   },
-  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+  "order": ["main","benefits","stats","ugc","reviews","comparison","accordion","pair"]
 }

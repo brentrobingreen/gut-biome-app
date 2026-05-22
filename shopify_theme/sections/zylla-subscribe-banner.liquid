@@ -1,0 +1,223 @@
+<style>
+  .zylla-sub-banner {
+    padding: clamp(7rem, 10vw, 11rem) var(--zylla-gutter);
+    background: var(--zylla-black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle decorative gradient blob */
+  .zylla-sub-banner::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,197,24,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .zylla-sub-banner__inner {
+    max-width: var(--zylla-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .zylla-sub-banner__eyebrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--zylla-energy);
+    margin: 0 0 2rem;
+  }
+
+  .zylla-sub-banner__heading {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(3.2rem, 4.5vw, 6rem);
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 2rem;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .zylla-sub-banner__subtext {
+    font-size: clamp(1.4rem, 1.5vw, 1.65rem);
+    color: rgba(255,255,255,0.55);
+    margin: 0 0 4rem;
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  .zylla-sub-banner__points {
+    display: flex;
+    gap: 3.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 4.8rem;
+  }
+
+  .zylla-sub-banner__point {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .zylla-sub-banner__point-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--zylla-energy);
+    flex-shrink: 0;
+  }
+
+  /* Right side: big percentage callout */
+  .zylla-sub-banner__callout {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .zylla-sub-banner__percent {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(7rem, 10vw, 13rem);
+    font-weight: 400;
+    color: var(--zylla-energy);
+    line-height: 0.9;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .zylla-sub-banner__percent-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  @media (max-width: 767px) {
+    .zylla-sub-banner__inner {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    .zylla-sub-banner__callout { order: -1; text-align: left; }
+    .zylla-sub-banner__percent { font-size: 8rem; }
+    .zylla-sub-banner__points { gap: 2rem; }
+  }
+</style>
+
+<section class="zylla-sub-banner">
+  <div class="zylla-sub-banner__inner">
+
+    <div class="zylla-sub-banner__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="zylla-sub-banner__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h2 class="zylla-sub-banner__heading">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="zylla-sub-banner__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+
+      <div class="zylla-sub-banner__points">
+        {%- for block in section.blocks -%}
+          <div class="zylla-sub-banner__point" {{ block.shopify_attributes }}>
+            <span class="zylla-sub-banner__point-dot"></span>
+            {{ block.settings.label }}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="zylla-btn zylla-btn--white">
+          {{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="zylla-sub-banner__callout" aria-hidden="true">
+      <span class="zylla-sub-banner__percent">{{ section.settings.discount_amount }}</span>
+      <p class="zylla-sub-banner__percent-label">off every order</p>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Subscribe & Save Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Subscribe & Save"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your daily ritual,\ndelivered monthly."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Subscribe to any Zylla product and save 15% on every order. No lock-in contracts, no hoops to jump through."
+    },
+    {
+      "type": "text",
+      "id": "discount_amount",
+      "label": "Discount amount (display)",
+      "default": "15%"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Subscribe Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link",
+      "default": "/collections/all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Feature point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Point text",
+          "default": "Save 15% every order"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscribe & Save Banner",
+      "blocks": [
+        { "type": "point", "settings": { "label": "Save 15% on every order" } },
+        { "type": "point", "settings": { "label": "Free monthly delivery" } },
+        { "type": "point", "settings": { "label": "Skip or cancel anytime" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,246 @@
+<style>
+  .zylla-hero {
+    padding: clamp(6rem, 10vw, 11rem) var(--zylla-gutter) clamp(5rem, 8vw, 9rem);
+    background: var(--zylla-off-white);
+    overflow: hidden;
+  }
+
+  .zylla-hero__inner {
+    max-width: var(--zylla-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(4rem, 6vw, 8rem);
+  }
+
+  .zylla-hero__eyebrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--zylla-mid);
+    margin: 0 0 2rem;
+  }
+
+  .zylla-hero__heading {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(4rem, 5.5vw, 7rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--zylla-black);
+    margin: 0 0 2.4rem;
+  }
+
+  .zylla-hero__subtext {
+    font-size: clamp(1.5rem, 1.6vw, 1.7rem);
+    line-height: 1.7;
+    color: var(--zylla-mid);
+    margin: 0 0 3.6rem;
+    max-width: 480px;
+  }
+
+  .zylla-hero__ctas {
+    display: flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  /* Product mosaic — right side visual */
+  .zylla-hero__mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 14px;
+    max-width: 500px;
+    margin-left: auto;
+  }
+
+  .zylla-hero__tile {
+    border-radius: var(--zylla-radius-card);
+    padding: 2.8rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease;
+    cursor: default;
+  }
+
+  .zylla-hero__tile:hover { transform: translateY(-4px); }
+
+  .zylla-hero__tile-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    margin-bottom: auto;
+    margin-top: 0;
+  }
+
+  .zylla-hero__tile-name {
+    font-family: var(--zylla-font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 0.4rem;
+    line-height: 1.1;
+  }
+
+  .zylla-hero__tile-tag {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.04em;
+  }
+
+  /* Tile colours */
+  .zylla-tile--creatine { background: linear-gradient(145deg, #5fa3e3, #3a7dc4); }
+  .zylla-tile--sleep    { background: linear-gradient(145deg, #b3a3d8, #7f6bb5); }
+  .zylla-tile--glow     { background: linear-gradient(145deg, #f0b8ae, #d98278); }
+  .zylla-tile--fiber    { background: linear-gradient(145deg, #95c498, #5d9a62); }
+  .zylla-tile--energy   { background: linear-gradient(145deg, #ffd84d, #e5a800); }
+
+  /* Tile layout — energy tile spans full width bottom row */
+  .zylla-tile--creatine { grid-column: 1; grid-row: 1; }
+  .zylla-tile--sleep    { grid-column: 2; grid-row: 1; }
+  .zylla-tile--glow     { grid-column: 1; grid-row: 2; }
+  .zylla-tile--fiber    { grid-column: 2; grid-row: 2; }
+  .zylla-tile--energy   { grid-column: 1 / span 2; grid-row: 3; min-height: 120px; }
+
+  .zylla-tile--energy .zylla-hero__tile-name { color: #1A1A1A; }
+  .zylla-tile--energy .zylla-hero__tile-tag  { color: rgba(26,26,26,0.65); }
+  .zylla-tile--energy .zylla-hero__tile-dot  { background: rgba(26,26,26,0.15); }
+
+  @media (max-width: 767px) {
+    .zylla-hero__inner {
+      grid-template-columns: 1fr;
+    }
+    .zylla-hero__mosaic {
+      max-width: 100%;
+      margin-left: 0;
+    }
+    .zylla-hero__heading { font-size: clamp(3.6rem, 10vw, 5.5rem); }
+  }
+</style>
+
+<section class="zylla-hero">
+  <div class="zylla-hero__inner">
+
+    <div class="zylla-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="zylla-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if request.page_type == 'index' -%}
+        <h1 class="zylla-hero__heading">{{ section.settings.heading }}</h1>
+      {%- else -%}
+        <h2 class="zylla-hero__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="zylla-hero__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+
+      <div class="zylla-hero__ctas">
+        {%- if section.settings.cta1_label != blank -%}
+          <a href="{{ section.settings.cta1_url }}" class="zylla-btn zylla-btn--primary">
+            {{ section.settings.cta1_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.cta2_label != blank -%}
+          <a href="{{ section.settings.cta2_url }}" class="zylla-btn zylla-btn--outline">
+            {{ section.settings.cta2_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="zylla-hero__mosaic" aria-hidden="true">
+      <div class="zylla-hero__tile zylla-tile--creatine">
+        <div class="zylla-hero__tile-dot"></div>
+        <p class="zylla-hero__tile-name">Creatine</p>
+        <span class="zylla-hero__tile-tag">Build &amp; recover</span>
+      </div>
+      <div class="zylla-hero__tile zylla-tile--sleep">
+        <div class="zylla-hero__tile-dot"></div>
+        <p class="zylla-hero__tile-name">Sleep</p>
+        <span class="zylla-hero__tile-tag">Wind down &amp; restore</span>
+      </div>
+      <div class="zylla-hero__tile zylla-tile--glow">
+        <div class="zylla-hero__tile-dot"></div>
+        <p class="zylla-hero__tile-name">Glow</p>
+        <span class="zylla-hero__tile-tag">Collagen from within</span>
+      </div>
+      <div class="zylla-hero__tile zylla-tile--fiber">
+        <div class="zylla-hero__tile-dot"></div>
+        <p class="zylla-hero__tile-name">Fiber</p>
+        <span class="zylla-hero__tile-tag">Gut health, simplified</span>
+      </div>
+      <div class="zylla-hero__tile zylla-tile--energy">
+        <div class="zylla-hero__tile-dot"></div>
+        <p class="zylla-hero__tile-name">Energy</p>
+        <span class="zylla-hero__tile-tag">Clean morning fuel</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Introducing Zylla"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Wellness that fits\nyour life."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Five functional sachets. One daily ritual. Formulated for the busy professional who refuses to compromise on their health."
+    },
+    {
+      "type": "text",
+      "id": "cta1_label",
+      "label": "Primary CTA label",
+      "default": "Shop All"
+    },
+    {
+      "type": "url",
+      "id": "cta1_url",
+      "label": "Primary CTA link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "cta2_label",
+      "label": "Secondary CTA label",
+      "default": "Subscribe & Save 15%"
+    },
+    {
+      "type": "url",
+      "id": "cta2_url",
+      "label": "Secondary CTA link",
+      "default": "/pages/subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

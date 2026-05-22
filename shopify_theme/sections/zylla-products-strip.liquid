@@ -1,0 +1,246 @@
+<style>
+  .zylla-products {
+    padding: var(--zylla-section-gap) var(--zylla-gutter);
+    background: var(--zylla-off-white);
+  }
+
+  .zylla-products__inner {
+    max-width: var(--zylla-max-width);
+    margin: 0 auto;
+  }
+
+  .zylla-products__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 4.8rem;
+    flex-wrap: wrap;
+  }
+
+  .zylla-products__heading {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(3rem, 4vw, 4.8rem);
+    font-weight: 400;
+    color: var(--zylla-black);
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .zylla-products__view-all {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zylla-black);
+    text-decoration: none;
+    white-space: nowrap;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+  }
+
+  .zylla-products__view-all:hover { opacity: 1; }
+
+  .zylla-products__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .zylla-product-card {
+    border-radius: var(--zylla-radius-card);
+    padding: 3rem 2.4rem 2.8rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+  }
+
+  .zylla-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+
+  .zylla-product-card--creatine { background: linear-gradient(160deg, #d8ebf8 0%, #b3d4f0 100%); }
+  .zylla-product-card--sleep    { background: linear-gradient(160deg, #e8e3f5 0%, #d0c5ec 100%); }
+  .zylla-product-card--glow     { background: linear-gradient(160deg, #fae8e5 0%, #f2cbc6 100%); }
+  .zylla-product-card--fiber    { background: linear-gradient(160deg, #dff0e0 0%, #c1e0c4 100%); }
+  .zylla-product-card--energy   { background: linear-gradient(160deg, #fef6ce 0%, #fce97a 100%); }
+
+  .zylla-product-card__accent {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: auto;
+    flex-shrink: 0;
+  }
+
+  .zylla-product-card--creatine .zylla-product-card__accent { background: var(--zylla-creatine); }
+  .zylla-product-card--sleep    .zylla-product-card__accent { background: var(--zylla-sleep); }
+  .zylla-product-card--glow     .zylla-product-card__accent { background: var(--zylla-glow); }
+  .zylla-product-card--fiber    .zylla-product-card__accent { background: var(--zylla-fiber); }
+  .zylla-product-card--energy   .zylla-product-card__accent { background: var(--zylla-energy); }
+
+  .zylla-product-card__body {
+    margin-top: 3.2rem;
+  }
+
+  .zylla-product-card__name {
+    font-family: var(--zylla-font-display);
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--zylla-black);
+    margin: 0 0 0.8rem;
+    line-height: 1.1;
+  }
+
+  .zylla-product-card__tagline {
+    font-size: 1.3rem;
+    color: var(--zylla-mid);
+    margin: 0 0 2rem;
+    line-height: 1.5;
+  }
+
+  .zylla-product-card__cta {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zylla-black);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.6;
+    transition: gap 0.2s, opacity 0.2s;
+  }
+
+  .zylla-product-card:hover .zylla-product-card__cta {
+    gap: 1rem;
+    opacity: 1;
+  }
+
+  /* Responsive */
+  @media (max-width: 989px) {
+    .zylla-products__grid {
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      overflow-x: auto;
+      padding-bottom: 1.6rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .zylla-products__grid::-webkit-scrollbar { display: none; }
+  }
+
+  @media (max-width: 599px) {
+    .zylla-products__grid {
+      grid-template-columns: repeat(5, 80vw);
+    }
+    .zylla-product-card { min-height: 280px; }
+  }
+</style>
+
+<section class="zylla-products">
+  <div class="zylla-products__inner">
+
+    <div class="zylla-products__header">
+      <h2 class="zylla-products__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.view_all_url != blank -%}
+        <a href="{{ section.settings.view_all_url }}" class="zylla-products__view-all">
+          View all &rarr;
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="zylla-products__grid">
+
+      {%- for block in section.blocks -%}
+        <a
+          href="{{ block.settings.url | default: '/collections/all' }}"
+          class="zylla-product-card zylla-product-card--{{ block.settings.color_key }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="zylla-product-card__accent"></div>
+          <div class="zylla-product-card__body">
+            <p class="zylla-product-card__name">{{ block.settings.name }}</p>
+            <p class="zylla-product-card__tagline">{{ block.settings.tagline }}</p>
+            <span class="zylla-product-card__cta">Shop &rarr;</span>
+          </div>
+        </a>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Products Strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "The Range"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View all link",
+      "default": "/collections/all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Product name",
+          "default": "Creatine"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline",
+          "default": "Build & recover faster"
+        },
+        {
+          "type": "select",
+          "id": "color_key",
+          "label": "Accent colour",
+          "options": [
+            { "value": "creatine", "label": "Creatine (Blue)" },
+            { "value": "sleep",    "label": "Sleep (Lavender)" },
+            { "value": "glow",     "label": "Glow (Blush)" },
+            { "value": "fiber",    "label": "Fiber (Green)" },
+            { "value": "energy",   "label": "Energy (Yellow)" }
+          ],
+          "default": "creatine"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Product link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products Strip",
+      "blocks": [
+        { "type": "product", "settings": { "name": "Creatine", "tagline": "Build & recover faster",    "color_key": "creatine" } },
+        { "type": "product", "settings": { "name": "Sleep",    "tagline": "Wind down & restore",       "color_key": "sleep" } },
+        { "type": "product", "settings": { "name": "Glow",     "tagline": "Collagen from within",      "color_key": "glow" } },
+        { "type": "product", "settings": { "name": "Fiber",    "tagline": "Gut health, simplified",    "color_key": "fiber" } },
+        { "type": "product", "settings": { "name": "Energy",   "tagline": "Clean morning fuel",        "color_key": "energy" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

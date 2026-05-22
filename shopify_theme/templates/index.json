@@ -1,4 +1,165 @@
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "hero": {
+      "type": "zylla-hero",
+      "settings": {
+        "eyebrow": "Introducing Zylla",
+        "heading": "Wellness that fits\nyour life.",
+        "subtext": "Five functional sachets. One daily ritual. Formulated for the busy professional who refuses to compromise on their health.",
+        "cta1_label": "Shop All",
+        "cta1_url": "/collections/all",
+        "cta2_label": "Subscribe & Save 15%",
+        "cta2_url": "/collections/all"
+      }
+    },
+    "products": {
+      "type": "zylla-products-strip",
+      "blocks": {
+        "creatine": {
+          "type": "product",
+          "settings": {
+            "name": "Creatine",
+            "tagline": "Build & recover faster",
+            "color_key": "creatine",
+            "url": "/collections/all"
+          }
+        },
+        "sleep": {
+          "type": "product",
+          "settings": {
+            "name": "Sleep",
+            "tagline": "Wind down & restore",
+            "color_key": "sleep",
+            "url": "/collections/all"
+          }
+        },
+        "glow": {
+          "type": "product",
+          "settings": {
+            "name": "Glow",
+            "tagline": "Collagen from within",
+            "color_key": "glow",
+            "url": "/collections/all"
+          }
+        },
+        "fiber": {
+          "type": "product",
+          "settings": {
+            "name": "Fiber",
+            "tagline": "Gut health, simplified",
+            "color_key": "fiber",
+            "url": "/collections/all"
+          }
+        },
+        "energy": {
+          "type": "product",
+          "settings": {
+            "name": "Energy",
+            "tagline": "Clean morning fuel",
+            "color_key": "energy",
+            "url": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["creatine", "sleep", "glow", "fiber", "energy"],
+      "settings": {
+        "heading": "The Range",
+        "view_all_url": "/collections/all"
+      }
+    },
+    "benefits": {
+      "type": "zylla-benefits",
+      "blocks": {
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "title": "Clean Ingredients",
+            "text": "No fillers, no fluff. Every ingredient is there for a reason — and every dose actually works."
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "bag",
+            "title": "Sachet Format",
+            "text": "Tear, stir, done. Fits in your bag, not just your cupboard. Convenience with zero compromise."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "flask",
+            "title": "Science-Backed",
+            "text": "Every formula is built on peer-reviewed research, with dosages proven to make a real difference."
+          }
+        },
+        "b4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "refresh",
+            "title": "Flexible Subscription",
+            "text": "Subscribe to save 15% on every order. Skip, swap, or cancel anytime — no hoops, no penalties."
+          }
+        }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "eyebrow": "Why Zylla",
+        "heading": "Built for real life."
+      }
+    },
+    "subscribe": {
+      "type": "zylla-subscribe-banner",
+      "blocks": {
+        "p1": { "type": "point", "settings": { "label": "Save 15% on every order" } },
+        "p2": { "type": "point", "settings": { "label": "Free monthly delivery" } },
+        "p3": { "type": "point", "settings": { "label": "Skip or cancel anytime" } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "eyebrow": "Subscribe & Save",
+        "heading": "Your daily ritual,\ndelivered monthly.",
+        "subtext": "Subscribe to any Zylla product and save 15% on every order. No lock-in contracts, no hoops to jump through.",
+        "discount_amount": "15%",
+        "cta_label": "Subscribe Now",
+        "cta_url": "/collections/all"
+      }
+    },
+    "testimonials": {
+      "type": "zylla-testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've tried every supplement brand out there. Zylla is the first one that actually fits into my morning routine without any fuss.",
+            "name": "Sarah M.",
+            "role": "Verified Customer · Sydney"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The energy sachet is unreal. Clean focus without the crash. My 3pm slump is completely gone and I haven't looked back.",
+            "name": "James T.",
+            "role": "Verified Customer · Melbourne"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Subscribe & save is a no-brainer. Set it and forget it — shows up every month. Never run out, never overpay.",
+            "name": "Priya K.",
+            "role": "Verified Customer · Brisbane"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "eyebrow": "Real Results",
+        "heading": "What people are saying."
+      }
+    }
+  },
+  "order": ["hero", "products", "benefits", "subscribe", "testimonials"]
 }

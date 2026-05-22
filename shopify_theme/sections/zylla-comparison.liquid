@@ -1,0 +1,183 @@
+<style>
+  .zylla-compare {
+    padding: var(--zylla-section-gap) var(--zylla-gutter);
+    background: var(--zylla-off-white);
+  }
+
+  .zylla-compare__inner {
+    max-width: var(--zylla-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2.2fr;
+    gap: clamp(4rem, 6vw, 8rem);
+    align-items: start;
+  }
+
+  .zylla-compare__heading {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(3rem, 3.5vw, 4.8rem);
+    font-weight: 400; color: var(--zylla-black);
+    margin: 0 0 2rem; line-height: 1.1;
+  }
+
+  .zylla-compare__subtext {
+    font-size: 1.5rem; color: var(--zylla-mid);
+    line-height: 1.7; margin: 0;
+  }
+
+  /* Table */
+  .zylla-compare__table-wrap { overflow-x: auto; }
+
+  .zylla-compare__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 1.3rem;
+  }
+
+  .zylla-compare__table th,
+  .zylla-compare__table td {
+    padding: 1.3rem 1.6rem;
+    text-align: center;
+    border-bottom: 1px solid var(--zylla-border);
+  }
+
+  .zylla-compare__table th:first-child,
+  .zylla-compare__table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--zylla-black);
+    width: 36%;
+    min-width: 160px;
+  }
+
+  /* Zylla column highlight */
+  .zylla-compare__table th.zylla-col {
+    background: var(--zylla-black);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 12px 12px 0 0;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .zylla-compare__table td.zylla-col {
+    background: rgba(26,26,26,0.04);
+    font-weight: 600;
+  }
+
+  .zylla-compare__table th:not(:first-child):not(.zylla-col) {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--zylla-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .zylla-check { color: var(--zylla-fiber); font-size: 1.5rem; font-weight: 700; }
+  .zylla-cross { color: rgba(107,107,107,0.5); font-size: 1.4rem; }
+  .zylla-maybe { color: var(--zylla-mid); font-size: 1.2rem; font-weight: 500; }
+
+  @media (max-width: 767px) {
+    .zylla-compare__inner { grid-template-columns: 1fr; }
+    .zylla-compare__table th,
+    .zylla-compare__table td { padding: 1rem 1.2rem; font-size: 1.2rem; }
+  }
+</style>
+
+<section class="zylla-compare">
+  <div class="zylla-compare__inner">
+
+    <div class="zylla-compare__left">
+      <h2 class="zylla-compare__heading">{{ section.settings.heading }}</h2>
+      <p class="zylla-compare__subtext">{{ section.settings.subtext }}</p>
+    </div>
+
+    <div class="zylla-compare__table-wrap">
+      <table class="zylla-compare__table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="zylla-col">Zylla Sachets</th>
+            <th>Powder Tubs</th>
+            <th>Capsules</th>
+            <th>Canned Drinks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Clinically dosed</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-maybe">Sometimes</span></td>
+            <td><span class="zylla-maybe">Sometimes</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>No fillers or artificial colours</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Third-party tested</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-maybe">Sometimes</span></td>
+            <td><span class="zylla-maybe">Sometimes</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Travel-ready single serve</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-check">✓</span></td>
+          </tr>
+          <tr>
+            <td>No measuring required</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Dissolves instantly</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-maybe">Sometimes</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-check">✓</span></td>
+          </tr>
+          <tr>
+            <td>30-day satisfaction guarantee</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Subscribe &amp; save</td>
+            <td class="zylla-col"><span class="zylla-check">✓</span></td>
+            <td><span class="zylla-maybe">Sometimes</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+            <td><span class="zylla-cross">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "settings": [
+    { "type": "text",     "id": "heading", "label": "Heading", "default": "Us vs. Them" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext",  "default": "Not overpriced, not under-dosed. Just clean, effective nutrition in a format that actually fits your life." }
+  ],
+  "presets": [{ "name": "Comparison Table" }]
+}
+{% endschema %}

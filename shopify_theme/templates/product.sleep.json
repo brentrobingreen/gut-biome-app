@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "main": {
+      "type": "zylla-main-product",
+      "blocks": {
+        "b1": { "type": "bullet", "settings": { "text": "Magnesium Glycinate + L-Theanine + Ashwagandha" } },
+        "b2": { "type": "bullet", "settings": { "text": "Fall asleep faster — clinically supported" } },
+        "b3": { "type": "bullet", "settings": { "text": "Non-habit forming — safe for every night" } },
+        "b4": { "type": "bullet", "settings": { "text": "Wake up clear-headed, not groggy" } },
+        "t1": { "type": "trust_badge", "settings": { "icon": "shield",  "label": "Clinician-formulated" } },
+        "t2": { "type": "trust_badge", "settings": { "icon": "refresh", "label": "30-day guarantee" } },
+        "t3": { "type": "trust_badge", "settings": { "icon": "truck",   "label": "Free monthly delivery" } }
+      },
+      "block_order": ["b1","b2","b3","b4","t1","t2","t3"],
+      "settings": {
+        "eyebrow": "Sleep Formula",
+        "accent_color": "#9B8EC4",
+        "accent_text_color": "#ffffff",
+        "rating": "4.8",
+        "review_count": "1,876"
+      }
+    },
+    "benefits": {
+      "type": "zylla-product-benefits",
+      "blocks": {
+        "c1": { "type": "benefit", "settings": { "icon": "moon",     "title": "Deeper Sleep",    "text": "Magnesium Glycinate supports GABA activity — your brain's primary sleep-promoting neurotransmitter." } },
+        "c2": { "type": "benefit", "settings": { "icon": "leaf",     "title": "Stress Relief",   "text": "KSM-66® Ashwagandha is clinically proven to reduce cortisol and ease anxiety before bed." } },
+        "c3": { "type": "benefit", "settings": { "icon": "sun",      "title": "Morning Clarity", "text": "Waking up rested isn't luck — it's biology. Our formula supports sleep architecture, not just onset." } },
+        "c4": { "type": "benefit", "settings": { "icon": "activity", "title": "Recovery Window", "text": "Deep sleep is when muscle repair, hormone production, and memory consolidation happen. Don't shortchange it." } }
+      },
+      "block_order": ["c1","c2","c3","c4"],
+      "settings": {
+        "eyebrow": "Why it works",
+        "heading": "Sleep deeper. Wake better.",
+        "accent_color": "#9B8EC4",
+        "accent_text_color": "#ffffff"
+      }
+    },
+    "stats": {
+      "type": "zylla-product-stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "91%", "label": "fall asleep faster within the first week" } },
+        "s2": { "type": "stat", "settings": { "number": "85%", "label": "report waking up genuinely rested after 2 weeks" } },
+        "s3": { "type": "stat", "settings": { "number": "93%", "label": "choose it as their nightly wind-down ritual" } },
+        "s4": { "type": "stat", "settings": { "number": "3×", "label": "better compliance vs. melatonin, which causes morning grogginess" } }
+      },
+      "block_order": ["s1","s2","s3","s4"],
+      "settings": {
+        "heading": "The results speak for themselves",
+        "subtext": "Here's what thousands of customers reported after 4 weeks of nightly Zylla Sleep.",
+        "disclaimer": "*Based on a post-purchase survey of 1,500+ verified customers after 4 weeks of nightly use.",
+        "accent_color": "#9B8EC4"
+      }
+    },
+    "reviews": {
+      "type": "zylla-reviews-carousel",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "quote": "I've been an insomniac for 10 years. Week 2 of this and I'm sleeping 7 solid hours. I'm genuinely shocked.", "name": "Claire M.", "role": "Product Manager" } },
+        "r2": { "type": "review", "settings": { "quote": "No more lying awake with a racing mind. The L-Theanine genuinely calms me down within 30 minutes.", "name": "Tom A.", "role": "Entrepreneur" } },
+        "r3": { "type": "review", "settings": { "quote": "I tried everything — melatonin, magnesium tablets, weighted blankets. This is the only thing that actually worked.", "name": "Jess L.", "role": "Nurse" } },
+        "r4": { "type": "review", "settings": { "quote": "I wake up and feel awake. No grogginess, no hangover feeling. Just actually rested.", "name": "David K.", "role": "Software Engineer" } },
+        "r5": { "type": "review", "settings": { "quote": "My Apple Watch sleep score went from 68 to 84 in three weeks. Whatever is in this sachet, it's working.", "name": "Anna P.", "role": "Finance" } }
+      },
+      "block_order": ["r1","r2","r3","r4","r5"],
+      "settings": {
+        "heading": "What our customers say",
+        "accent_color": "#9B8EC4",
+        "accent_text_color": "#ffffff"
+      }
+    },
+    "comparison": {
+      "type": "zylla-comparison",
+      "settings": {
+        "heading": "Us vs. Them",
+        "subtext": "Most sleep aids either leave you groggy or create dependency. Zylla Sleep works with your body's natural systems."
+      }
+    },
+    "accordion": {
+      "type": "zylla-product-accordion",
+      "blocks": {
+        "a1": { "type": "item", "settings": { "icon": "flask", "heading": "What's Inside", "content": "<p>Each sachet contains 300mg Magnesium Glycinate, 200mg L-Theanine, 300mg KSM-66® Ashwagandha, and 50mg Lemon Balm Extract. No melatonin — because long-term melatonin supplementation can disrupt your natural hormone production.</p>" } },
+        "a2": { "type": "item", "settings": { "icon": "use",   "heading": "How to Use",   "content": "<p>Mix one sachet into 200ml of warm water 30–45 minutes before bed. Avoid screens after taking — let the ingredients work with your body's natural wind-down process.</p>" } },
+        "a3": { "type": "item", "settings": { "icon": "leaf",  "heading": "The Science",  "content": "<p>Our formula works with your body's existing sleep systems rather than overriding them. Magnesium Glycinate supports GABA (your brain's calming neurotransmitter). L-Theanine reduces alpha brain waves to promote relaxed alertness that transitions into sleep. KSM-66® Ashwagandha has 24 clinical trials proving its cortisol-reducing effects.</p>" } }
+      },
+      "block_order": ["a1","a2","a3"],
+      "settings": { "eyebrow": "Everything you need to know", "heading": "The Details" }
+    },
+    "pair": {
+      "type": "zylla-pair-with",
+      "blocks": {
+        "p1": { "type": "product", "settings": { "name": "Creatine", "tagline": "Build & recover faster",    "color_key": "creatine" } },
+        "p2": { "type": "product", "settings": { "name": "Fiber",    "tagline": "Gut health, simplified",   "color_key": "fiber" } },
+        "p3": { "type": "product", "settings": { "name": "Glow",     "tagline": "Collagen from within",     "color_key": "glow" } }
+      },
+      "block_order": ["p1","p2","p3"],
+      "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
+    }
+  },
+  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+}

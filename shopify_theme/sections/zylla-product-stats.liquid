@@ -1,0 +1,113 @@
+<style>
+  .zylla-stats {
+    padding: var(--zylla-section-gap) var(--zylla-gutter);
+    background: var(--zylla-off-white);
+  }
+
+  .zylla-stats__inner { max-width: var(--zylla-max-width); margin: 0 auto; }
+
+  .zylla-stats__card {
+    background: #FFF6CC;
+    border-radius: var(--zylla-radius-card);
+    padding: clamp(4rem, 6vw, 6.4rem) clamp(3rem, 5vw, 5.6rem);
+  }
+
+  .zylla-stats__heading {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(2.8rem, 3.5vw, 4.4rem);
+    font-weight: 400; color: var(--zylla-black);
+    text-align: center; margin: 0 0 1.2rem; line-height: 1.1;
+  }
+
+  .zylla-stats__subtext {
+    font-size: clamp(1.4rem, 1.5vw, 1.65rem);
+    color: var(--zylla-mid); text-align: center; line-height: 1.65;
+    margin: 0 auto 4.8rem; max-width: 600px;
+  }
+
+  .zylla-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3.2rem;
+  }
+
+  .zylla-stat { text-align: center; }
+
+  .zylla-stat__number {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(4rem, 6vw, 7.2rem);
+    font-weight: 400; line-height: 1;
+    color: var(--zylla-stats-accent, var(--zylla-black));
+    display: block; margin-bottom: 1.2rem;
+  }
+
+  .zylla-stat__label {
+    font-size: 1.4rem; color: var(--zylla-black);
+    line-height: 1.55; margin: 0;
+  }
+
+  .zylla-stats__disclaimer {
+    font-size: 1.1rem; color: var(--zylla-mid);
+    text-align: center; margin: 3.6rem 0 0;
+    font-style: italic; line-height: 1.5;
+  }
+
+  @media (max-width: 767px) {
+    .zylla-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 3.2rem 2rem; }
+  }
+</style>
+
+<section
+  class="zylla-stats"
+  style="--zylla-stats-accent: {{ section.settings.accent_color }};"
+>
+  <div class="zylla-stats__inner">
+    <div class="zylla-stats__card">
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="zylla-stats__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="zylla-stats__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+
+      <div class="zylla-stats__grid">
+        {%- for block in section.blocks -%}
+          <div class="zylla-stat" {{ block.shopify_attributes }}>
+            <span class="zylla-stat__number">{{ block.settings.number }}</span>
+            <p class="zylla-stat__label">{{ block.settings.label }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.disclaimer != blank -%}
+        <p class="zylla-stats__disclaimer">{{ section.settings.disclaimer }}</p>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Stats",
+  "settings": [
+    { "type": "text",     "id": "heading",     "label": "Heading",        "default": "The results speak for themselves" },
+    { "type": "textarea", "id": "subtext",     "label": "Subtext",        "default": "Here's what thousands of customers reported after 8 weeks of daily use." },
+    { "type": "textarea", "id": "disclaimer",  "label": "Disclaimer",     "default": "*Based on a post-purchase survey of 2,000+ verified customers after 8 weeks of daily use." },
+    { "type": "color",    "id": "accent_color","label": "Number colour",  "default": "#4B8FD4" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        { "type": "text",     "id": "number", "label": "Number / percentage", "default": "89%" },
+        { "type": "textarea", "id": "label",  "label": "Description",         "default": "see measurable strength gains within 4 weeks" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Product Stats" }]
+}
+{% endschema %}

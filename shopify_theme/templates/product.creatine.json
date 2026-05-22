@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "main": {
+      "type": "zylla-main-product",
+      "blocks": {
+        "b1": { "type": "bullet", "settings": { "text": "3g Creatine Monohydrate per sachet" } },
+        "b2": { "type": "bullet", "settings": { "text": "Clinically dosed, third-party tested" } },
+        "b3": { "type": "bullet", "settings": { "text": "Mixes clean in water — no chalky residue" } },
+        "b4": { "type": "bullet", "settings": { "text": "Supports muscle, recovery & cognitive function" } },
+        "t1": { "type": "trust_badge", "settings": { "icon": "flask",   "label": "Third-party tested" } },
+        "t2": { "type": "trust_badge", "settings": { "icon": "refresh", "label": "30-day guarantee" } },
+        "t3": { "type": "trust_badge", "settings": { "icon": "truck",   "label": "Free monthly delivery" } }
+      },
+      "block_order": ["b1","b2","b3","b4","t1","t2","t3"],
+      "settings": {
+        "eyebrow": "Creatine Monohydrate",
+        "accent_color": "#4B8FD4",
+        "accent_text_color": "#ffffff",
+        "rating": "4.9",
+        "review_count": "2,341"
+      }
+    },
+    "benefits": {
+      "type": "zylla-product-benefits",
+      "blocks": {
+        "c1": { "type": "benefit", "settings": { "icon": "activity", "title": "Muscle Strength", "text": "Supports ATP production to increase peak power output and strength over time." } },
+        "c2": { "type": "benefit", "settings": { "icon": "refresh",  "title": "Faster Recovery", "text": "Reduces muscle breakdown post-exercise so you bounce back faster and train harder." } },
+        "c3": { "type": "benefit", "settings": { "icon": "flask",    "title": "Brain Performance", "text": "Creatine phosphorylates in the brain — supporting focus, memory, and mental clarity." } },
+        "c4": { "type": "benefit", "settings": { "icon": "lightning","title": "Daily Endurance", "text": "A daily sachet keeps creatine stores topped up so performance compounds week on week." } }
+      },
+      "block_order": ["c1","c2","c3","c4"],
+      "settings": {
+        "eyebrow": "Why it works",
+        "heading": "Built to perform",
+        "accent_color": "#4B8FD4",
+        "accent_text_color": "#ffffff"
+      }
+    },
+    "stats": {
+      "type": "zylla-product-stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "89%", "label": "see measurable strength gains within 4 weeks" } },
+        "s2": { "type": "stat", "settings": { "number": "94%", "label": "make it part of their daily routine without fail" } },
+        "s3": { "type": "stat", "settings": { "number": "78%", "label": "report sharper mental focus alongside physical gains" } },
+        "s4": { "type": "stat", "settings": { "number": "2.3×", "label": "more consistent daily dosing vs. powder tubs" } }
+      },
+      "block_order": ["s1","s2","s3","s4"],
+      "settings": {
+        "heading": "The results speak for themselves",
+        "subtext": "Here's what thousands of customers reported after 8 weeks of daily Zylla Creatine.",
+        "disclaimer": "*Based on a post-purchase survey of 2,000+ verified customers after 8 weeks of daily use.",
+        "accent_color": "#4B8FD4"
+      }
+    },
+    "reviews": {
+      "type": "zylla-reviews-carousel",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "quote": "I've tried every form of creatine. Sachets beat them all for consistency. No more guessing powder scoops.", "name": "Marcus T.", "role": "Personal Trainer" } },
+        "r2": { "type": "review", "settings": { "quote": "My lifts are up 10% in 6 weeks. The convenience means I actually take it every single day.", "name": "Sarah L.", "role": "Gym-goer" } },
+        "r3": { "type": "review", "settings": { "quote": "Zero taste, mixes instantly. I just add it to my morning coffee and forget about it.", "name": "James R.", "role": "Runner" } },
+        "r4": { "type": "review", "settings": { "quote": "Finally a creatine that doesn't leave residue at the bottom of my cup. Game changer.", "name": "Emily K.", "role": "Cyclist" } },
+        "r5": { "type": "review", "settings": { "quote": "Two months in — stronger, recovered faster, and my focus at work has noticeably improved too.", "name": "Brent G.", "role": "Marketing Director" } }
+      },
+      "block_order": ["r1","r2","r3","r4","r5"],
+      "settings": {
+        "heading": "What our customers say",
+        "accent_color": "#4B8FD4",
+        "accent_text_color": "#ffffff"
+      }
+    },
+    "comparison": {
+      "type": "zylla-comparison",
+      "settings": {
+        "heading": "Us vs. Them",
+        "subtext": "Not overpriced, not under-dosed. Just clean, effective creatine in a format that actually fits your life."
+      }
+    },
+    "accordion": {
+      "type": "zylla-product-accordion",
+      "blocks": {
+        "a1": { "type": "item", "settings": { "icon": "flask", "heading": "What's Inside", "content": "<p>Each sachet contains 3g of pharmaceutical-grade Creatine Monohydrate. No additives, no fillers, no artificial colours — just the most researched performance supplement on the planet in its purest form.</p>" } },
+        "a2": { "type": "item", "settings": { "icon": "use",   "heading": "How to Use",    "content": "<p>Mix one sachet with 200–300ml of water, juice, or coffee. Take daily — timing doesn't matter much, but consistency does. Works best when taken every day, not just on training days.</p>" } },
+        "a3": { "type": "item", "settings": { "icon": "leaf",  "heading": "The Science",   "content": "<p>Creatine Monohydrate is the most researched supplement in sports nutrition history — 500+ peer-reviewed studies. It works by replenishing ATP (your muscles' primary energy currency), leading to measurable gains in strength, power, and recovery. It also crosses the blood-brain barrier, supporting cognitive function.</p>" } }
+      },
+      "block_order": ["a1","a2","a3"],
+      "settings": { "eyebrow": "Everything you need to know", "heading": "The Details" }
+    },
+    "pair": {
+      "type": "zylla-pair-with",
+      "blocks": {
+        "p1": { "type": "product", "settings": { "name": "Sleep",  "tagline": "Wind down & restore",    "color_key": "sleep" } },
+        "p2": { "type": "product", "settings": { "name": "Fiber",  "tagline": "Gut health, simplified", "color_key": "fiber" } },
+        "p3": { "type": "product", "settings": { "name": "Energy", "tagline": "Clean morning fuel",     "color_key": "energy" } }
+      },
+      "block_order": ["p1","p2","p3"],
+      "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
+    }
+  },
+  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+}

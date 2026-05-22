@@ -1,0 +1,723 @@
+<style>
+  .zylla-pdp {
+    padding: 5.6rem var(--zylla-gutter) 2.4rem;
+    background: var(--zylla-off-white);
+  }
+
+  .zylla-pdp__inner {
+    max-width: var(--zylla-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(4rem, 6vw, 8rem);
+    align-items: start;
+  }
+
+  /* ── Gallery ── */
+  .zylla-pdp-gallery { position: sticky; top: 88px; }
+
+  .zylla-pdp-gallery__main {
+    background: #fff;
+    border-radius: var(--zylla-radius-card);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .zylla-pdp-gallery__main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.18s ease;
+  }
+
+  .zylla-pdp-gallery__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--zylla-pdp-accent-light, #f0f0ec);
+  }
+
+  .zylla-pdp-gallery__placeholder svg { width: 100px; height: 100px; opacity: 0.15; }
+
+  .zylla-pdp-gallery__thumbs { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  .zylla-pdp-gallery__thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background: #fff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    flex-shrink: 0;
+    padding: 0;
+  }
+
+  .zylla-pdp-gallery__thumb.is-active { border-color: var(--zylla-pdp-accent); }
+  .zylla-pdp-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Info col ── */
+  .zylla-pdp__eyebrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    color: var(--zylla-pdp-accent);
+  }
+
+  .zylla-pdp__title {
+    font-family: var(--zylla-font-display);
+    font-size: clamp(3rem, 3.5vw, 4.6rem);
+    font-weight: 400;
+    color: var(--zylla-black);
+    margin: 0 0 1.4rem;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  /* Stars */
+  .zylla-pdp__stars { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; }
+  .zylla-pdp__stars-icons { display: flex; gap: 2px; }
+  .zylla-pdp__stars-icons svg { width: 15px; height: 15px; }
+  .zylla-pdp__stars-score { font-size: 1.3rem; font-weight: 700; color: var(--zylla-black); }
+  .zylla-pdp__stars-count { font-size: 1.25rem; color: var(--zylla-mid); }
+
+  /* Bullets */
+  .zylla-pdp__bullets { list-style: none; margin: 0 0 2.4rem; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+
+  .zylla-pdp__bullets li {
+    font-size: 1.4rem;
+    color: var(--zylla-black);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .zylla-pdp__bullet-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--zylla-pdp-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .zylla-pdp__bullet-check svg {
+    width: 9px;
+    height: 9px;
+    stroke: var(--zylla-pdp-accent-text, #fff);
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Purchase type cards */
+  .zylla-pdp__purchase-type { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+
+  .zylla-pdp__pt-card {
+    border: 1.5px solid var(--zylla-border);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+  }
+
+  .zylla-pdp__pt-card:hover  { border-color: rgba(26,26,26,0.3); }
+  .zylla-pdp__pt-card.is-active { border-color: var(--zylla-black); }
+
+  .zylla-pdp__pt-eyebrow {
+    display: block;
+    width: 100%;
+    padding: 0.7rem 1.6rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    background: var(--zylla-pdp-accent);
+    color: var(--zylla-pdp-accent-text, #fff);
+  }
+
+  .zylla-pdp__pt-main {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.4rem 1.6rem;
+    gap: 1.2rem;
+  }
+
+  .zylla-pdp__pt-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--zylla-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+  }
+
+  .zylla-pdp__pt-card.is-active .zylla-pdp__pt-radio { border-color: var(--zylla-black); background: var(--zylla-black); }
+
+  .zylla-pdp__pt-card.is-active .zylla-pdp__pt-radio::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+  }
+
+  .zylla-pdp__pt-labels { flex: 1; }
+  .zylla-pdp__pt-label { font-size: 1.35rem; font-weight: 700; color: var(--zylla-black); display: block; line-height: 1.2; margin-bottom: 0.3rem; }
+  .zylla-pdp__pt-note  { font-size: 1.2rem; color: var(--zylla-mid); display: block; }
+
+  .zylla-pdp__pt-prices { text-align: right; flex-shrink: 0; }
+  .zylla-pdp__pt-price   { font-size: 1.8rem; font-weight: 700; color: var(--zylla-black); display: block; line-height: 1; }
+  .zylla-pdp__pt-compare { font-size: 1.2rem; color: var(--zylla-mid); text-decoration: line-through; display: block; margin-top: 0.3rem; }
+
+  /* Benefits drawer */
+  .zylla-pdp__pt-drawer { overflow: hidden; height: 0; transition: height 0.28s ease; }
+
+  .zylla-pdp__pt-drawer-inner { padding: 0.2rem 1.6rem 1.4rem 4.6rem; }
+
+  .zylla-pdp__pt-perks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+
+  .zylla-pdp__pt-perk {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.25rem;
+    color: var(--zylla-mid);
+    line-height: 1.3;
+  }
+
+  .zylla-pdp__pt-perk svg { width: 14px; height: 14px; flex-shrink: 0; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .zylla-pdp__pt-perk--yes svg { stroke: var(--zylla-fiber); }
+  .zylla-pdp__pt-perk--no  svg { stroke: rgba(107,107,107,0.5); }
+  .zylla-pdp__pt-perk--no  { opacity: 0.6; }
+
+  /* Quantity */
+  .zylla-pdp__qty-label { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--zylla-mid); margin-bottom: 0.8rem; display: block; }
+
+  .zylla-pdp__qty-radios { display: flex; gap: 0.8rem; margin-bottom: 1.8rem; }
+
+  .zylla-pdp__qty-opt { position: relative; }
+  .zylla-pdp__qty-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+  .zylla-pdp__qty-opt label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2.4rem;
+    border: 1.5px solid var(--zylla-border);
+    border-radius: var(--zylla-radius-pill);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--zylla-black);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    white-space: nowrap;
+    background: #fff;
+  }
+
+  .zylla-pdp__qty-opt input:checked + label { border-color: var(--zylla-black); }
+  .zylla-pdp__qty-opt label:hover { border-color: rgba(26,26,26,0.4); }
+
+  /* ATC */
+  .zylla-pdp__atc-wrap { margin-bottom: 1.8rem; }
+
+  .zylla-pdp__atc {
+    width: 100%;
+    height: 56px;
+    background: var(--zylla-black);
+    color: #fff;
+    border: none;
+    border-radius: var(--zylla-radius-pill);
+    font-family: var(--zylla-font-body);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .zylla-pdp__atc:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,26,26,0.2); }
+  .zylla-pdp__atc:active { transform: none; }
+  .zylla-pdp__atc:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* Trust badges */
+  .zylla-pdp__trust {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.8rem 0;
+    border-top: 1px solid var(--zylla-border);
+    border-bottom: 1px solid var(--zylla-border);
+  }
+
+  .zylla-pdp__trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+    text-align: center;
+  }
+
+  .zylla-pdp__trust-icon { width: 36px; height: 36px; }
+
+  .zylla-pdp__trust-icon svg {
+    width: 36px;
+    height: 36px;
+    stroke: var(--zylla-pdp-accent);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .zylla-pdp__trust-text { font-size: 1.15rem; font-weight: 500; color: var(--zylla-black); line-height: 1.35; }
+
+  /* Sticky mobile ATC */
+  .zylla-pdp-sticky {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    background: #fff;
+    border-top: 1px solid var(--zylla-border);
+    padding: 1.2rem 2rem;
+    box-shadow: 0 -4px 20px rgba(26,26,26,0.08);
+  }
+
+  .zylla-pdp-sticky__inner {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    max-width: var(--zylla-max-width);
+    margin: 0 auto;
+  }
+
+  .zylla-pdp-sticky__title {
+    flex: 1;
+    font-family: var(--zylla-font-display);
+    font-size: 1.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .zylla-pdp-sticky__btn {
+    background: var(--zylla-black);
+    color: #fff;
+    border: none;
+    border-radius: var(--zylla-radius-pill);
+    padding: 1.2rem 2.4rem;
+    font-family: var(--zylla-font-body);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+
+  .zylla-pdp-sticky__btn:hover { transform: translateY(-1px); }
+
+  @media (max-width: 989px) {
+    .zylla-pdp-sticky.is-visible { display: block; }
+  }
+
+  @media (max-width: 767px) {
+    .zylla-pdp__inner { grid-template-columns: 1fr; }
+    .zylla-pdp-gallery { position: static; }
+    .zylla-pdp__trust { flex-wrap: wrap; }
+    .zylla-pdp__trust-item { min-width: calc(33% - 0.8rem); }
+  }
+</style>
+
+{%- assign form_id = 'zylla-form-' | append: section.id -%}
+
+<section
+  class="zylla-pdp"
+  style="--zylla-pdp-accent: {{ section.settings.accent_color }}; --zylla-pdp-accent-text: {{ section.settings.accent_text_color }};"
+>
+  <div class="zylla-pdp__inner">
+
+    <!-- Left: Gallery -->
+    <div class="zylla-pdp-gallery">
+      <div class="zylla-pdp-gallery__main">
+        {%- if product.featured_image -%}
+          <img
+            id="zylla-main-img"
+            src="{{ product.featured_image | image_url: width: 800 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="800"
+            height="800"
+            loading="eager"
+          >
+        {%- else -%}
+          <div class="zylla-pdp-gallery__placeholder">
+            {{ 'product-1' | placeholder_svg_tag }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if product.images.size > 1 -%}
+        <div class="zylla-pdp-gallery__thumbs">
+          {%- for image in product.images limit: 5 -%}
+            <button
+              class="zylla-pdp-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+              data-img="{{ image | image_url: width: 800 }}"
+              data-alt="{{ image.alt | escape }}"
+              type="button"
+              aria-label="View image {{ forloop.index }}"
+            >
+              <img src="{{ image | image_url: width: 120 }}" alt="{{ image.alt | escape }}" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Right: Info -->
+    <div class="zylla-pdp-info">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="zylla-pdp__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h1 class="zylla-pdp__title">{{ product.title }}</h1>
+
+      {%- if section.settings.rating != blank -%}
+        <div class="zylla-pdp__stars">
+          <div class="zylla-pdp__stars-icons">
+            {%- for i in (1..5) -%}
+              <svg viewBox="0 0 24 24" fill="{{ section.settings.accent_color }}">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            {%- endfor -%}
+          </div>
+          <span class="zylla-pdp__stars-score">{{ section.settings.rating }}</span>
+          <span class="zylla-pdp__stars-count">({{ section.settings.review_count }} reviews)</span>
+        </div>
+      {%- endif -%}
+
+      {%- assign bullet_blocks = section.blocks | where: 'type', 'bullet' -%}
+      {%- if bullet_blocks.size > 0 -%}
+        <ul class="zylla-pdp__bullets">
+          {%- for block in bullet_blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <span class="zylla-pdp__bullet-check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              {{ block.settings.text }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <!-- Purchase toggle -->
+      <div class="zylla-pdp__purchase-type" id="zylla-purchase-type">
+
+        <div class="zylla-pdp__pt-card is-active" id="zylla-card-sub" role="button" tabindex="0" aria-pressed="true">
+          <span class="zylla-pdp__pt-eyebrow">Save 15% Every Month</span>
+          <div class="zylla-pdp__pt-main">
+            <span class="zylla-pdp__pt-radio"></span>
+            <div class="zylla-pdp__pt-labels">
+              <span class="zylla-pdp__pt-label">Subscribe &amp; Save</span>
+              <span class="zylla-pdp__pt-note">Delivered every 4 weeks</span>
+            </div>
+            <div class="zylla-pdp__pt-prices">
+              <span class="zylla-pdp__pt-price" id="zylla-price-sub">—</span>
+              <span class="zylla-pdp__pt-compare" id="zylla-price-compare">—</span>
+            </div>
+          </div>
+          <div class="zylla-pdp__pt-drawer" id="zylla-drawer-sub">
+            <div class="zylla-pdp__pt-drawer-inner">
+              <ul class="zylla-pdp__pt-perks">
+                <li class="zylla-pdp__pt-perk zylla-pdp__pt-perk--yes">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Free delivery every month
+                </li>
+                <li class="zylla-pdp__pt-perk zylla-pdp__pt-perk--yes">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Skip or cancel any time
+                </li>
+                <li class="zylla-pdp__pt-perk zylla-pdp__pt-perk--yes">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30-day money-back guarantee
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="zylla-pdp__pt-card" id="zylla-card-one" role="button" tabindex="0" aria-pressed="false">
+          <div class="zylla-pdp__pt-main">
+            <span class="zylla-pdp__pt-radio"></span>
+            <div class="zylla-pdp__pt-labels">
+              <span class="zylla-pdp__pt-label">One-Time Purchase</span>
+              <span class="zylla-pdp__pt-note">Delivered once</span>
+            </div>
+            <div class="zylla-pdp__pt-prices">
+              <span class="zylla-pdp__pt-price" id="zylla-price-one">—</span>
+            </div>
+          </div>
+          <div class="zylla-pdp__pt-drawer" id="zylla-drawer-one">
+            <div class="zylla-pdp__pt-drawer-inner">
+              <ul class="zylla-pdp__pt-perks">
+                <li class="zylla-pdp__pt-perk zylla-pdp__pt-perk--no">
+                  <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>No free delivery
+                </li>
+                <li class="zylla-pdp__pt-perk zylla-pdp__pt-perk--no">
+                  <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>No ongoing discount
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quantity -->
+      <span class="zylla-pdp__qty-label">Quantity</span>
+      <div class="zylla-pdp__qty-radios">
+        <div class="zylla-pdp__qty-opt">
+          <input type="radio" name="zylla-qty" id="zylla-qty-1" value="1" checked>
+          <label for="zylla-qty-1">1 Pack</label>
+        </div>
+        <div class="zylla-pdp__qty-opt">
+          <input type="radio" name="zylla-qty" id="zylla-qty-2" value="2">
+          <label for="zylla-qty-2">2 Packs</label>
+        </div>
+      </div>
+
+      <!-- Form / ATC -->
+      {%- form 'product', product, id: form_id -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" id="zylla-qty-val" value="1">
+        <input type="hidden" name="properties[Purchase preference]" id="zylla-pref-val" value="Subscribe & Save">
+        <div class="zylla-pdp__atc-wrap">
+          {%- if product.selected_or_first_available_variant.available -%}
+            <button type="submit" name="add" id="zylla-atc" class="zylla-pdp__atc">Subscribe &amp; Save</button>
+          {%- else -%}
+            <button type="button" class="zylla-pdp__atc" disabled>Sold Out</button>
+          {%- endif -%}
+        </div>
+      {%- endform -%}
+
+      <!-- Trust badges -->
+      {%- assign trust_blocks = section.blocks | where: 'type', 'trust_badge' -%}
+      {%- if trust_blocks.size > 0 -%}
+        <div class="zylla-pdp__trust">
+          {%- for block in trust_blocks -%}
+            <div class="zylla-pdp__trust-item" {{ block.shopify_attributes }}>
+              <div class="zylla-pdp__trust-icon">
+                {%- case block.settings.icon -%}
+                  {%- when 'shield' -%}
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  {%- when 'check' -%}
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  {%- when 'truck' -%}
+                    <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  {%- when 'refresh' -%}
+                    <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  {%- when 'flask' -%}
+                    <svg viewBox="0 0 24 24"><path d="M9 3h6M9 3v7l-5 9a1 1 0 0 0 .9 1.5h14.2A1 1 0 0 0 20 19l-5-9V3"/><line x1="6.5" y1="14.5" x2="17.5" y2="14.5"/></svg>
+                  {%- when 'leaf' -%}
+                    <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 19.57A1 1 0 0 0 4.7 21 23.5 23.5 0 0 0 20 18c1-6-2-13-3-10z"/><path d="M3.82 19.57l5.68-5.68"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                {%- endcase -%}
+              </div>
+              <span class="zylla-pdp__trust-text">{{ block.settings.label }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+<div class="zylla-pdp-sticky" id="zylla-pdp-sticky">
+  <div class="zylla-pdp-sticky__inner">
+    <span class="zylla-pdp-sticky__title">{{ product.title }}</span>
+    <button class="zylla-pdp-sticky__btn" id="zylla-sticky-btn" type="button">Add to Cart</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var price    = {{ product.selected_or_first_available_variant.price }};
+  var subPrice = Math.round(price * 0.85);
+  var currency = '{{ shop.currency }}';
+  var qty      = 1;
+  var isSub    = true;
+
+  function fmt(cents, q) {
+    return new Intl.NumberFormat('en-AU', {
+      style: 'currency', currency: currency, minimumFractionDigits: 2
+    }).format((cents * (q || 1)) / 100);
+  }
+
+  var elSubPrice = document.getElementById('zylla-price-sub');
+  var elOnePrice = document.getElementById('zylla-price-one');
+  var elCompare  = document.getElementById('zylla-price-compare');
+  var atcBtn     = document.getElementById('zylla-atc');
+  var qtyVal     = document.getElementById('zylla-qty-val');
+  var prefVal    = document.getElementById('zylla-pref-val');
+  var stickyBar  = document.getElementById('zylla-pdp-sticky');
+  var stickyBtn  = document.getElementById('zylla-sticky-btn');
+
+  function updateUI() {
+    if (elSubPrice) elSubPrice.textContent = fmt(subPrice, qty);
+    if (elOnePrice) elOnePrice.textContent = fmt(price, qty);
+    if (elCompare)  elCompare.textContent  = fmt(price, qty);
+    if (qtyVal)     qtyVal.value = qty;
+    if (atcBtn && !atcBtn.disabled) {
+      atcBtn.textContent = isSub
+        ? 'Subscribe — ' + fmt(subPrice, qty) + ' / mo'
+        : 'Add to Cart — ' + fmt(price, qty);
+    }
+    if (prefVal) prefVal.value = isSub ? 'Subscribe & Save' : 'One-Time Purchase';
+    if (stickyBtn) {
+      stickyBtn.textContent = isSub
+        ? 'Subscribe — ' + fmt(subPrice, qty) + ' / mo'
+        : 'Add to Cart — ' + fmt(price, qty);
+    }
+  }
+
+  function openDrawer(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var inner = el.querySelector('.zylla-pdp__pt-drawer-inner');
+    el.style.height = inner ? inner.offsetHeight + 'px' : '0';
+  }
+
+  function closeDrawer(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.height = '0';
+  }
+
+  function selectCard(type) {
+    isSub = type === 'sub';
+    var cardSub = document.getElementById('zylla-card-sub');
+    var cardOne = document.getElementById('zylla-card-one');
+    if (cardSub) { cardSub.classList.toggle('is-active', isSub); cardSub.setAttribute('aria-pressed', String(isSub)); }
+    if (cardOne) { cardOne.classList.toggle('is-active', !isSub); cardOne.setAttribute('aria-pressed', String(!isSub)); }
+    if (isSub) { openDrawer('zylla-drawer-sub'); closeDrawer('zylla-drawer-one'); }
+    else       { closeDrawer('zylla-drawer-sub'); openDrawer('zylla-drawer-one'); }
+    updateUI();
+  }
+
+  var cardSub = document.getElementById('zylla-card-sub');
+  var cardOne = document.getElementById('zylla-card-one');
+  if (cardSub) cardSub.addEventListener('click', function () { selectCard('sub'); });
+  if (cardOne) cardOne.addEventListener('click', function () { selectCard('one'); });
+
+  [cardSub, cardOne].forEach(function (card, i) {
+    if (!card) return;
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(i === 0 ? 'sub' : 'one'); }
+    });
+  });
+
+  document.querySelectorAll('[name="zylla-qty"]').forEach(function (r) {
+    r.addEventListener('change', function () { qty = parseInt(this.value, 10) || 1; updateUI(); });
+  });
+
+  document.querySelectorAll('.zylla-pdp-gallery__thumb').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.zylla-pdp-gallery__thumb').forEach(function (b) { b.classList.remove('is-active'); });
+      this.classList.add('is-active');
+      var mainImg = document.getElementById('zylla-main-img');
+      if (mainImg) {
+        mainImg.style.opacity = '0';
+        var src = this.dataset.img, alt = this.dataset.alt || '';
+        requestAnimationFrame(function () { mainImg.src = src; mainImg.alt = alt; mainImg.style.opacity = '1'; });
+      }
+    });
+  });
+
+  if (stickyBtn) {
+    stickyBtn.addEventListener('click', function () {
+      var form = document.getElementById('{{ form_id }}');
+      if (form) { if (form.requestSubmit) form.requestSubmit(); else form.submit(); }
+    });
+  }
+
+  var atcWrap = document.querySelector('.zylla-pdp__atc-wrap');
+  if (atcWrap && stickyBar && window.IntersectionObserver) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { stickyBar.classList.toggle('is-visible', !e.isIntersecting); });
+    }).observe(atcWrap);
+  }
+
+  updateUI();
+  openDrawer('zylla-drawer-sub');
+});
+</script>
+
+{% schema %}
+{
+  "name": "Product Hero",
+  "settings": [
+    { "type": "text",  "id": "eyebrow",           "label": "Category label",        "default": "Creatine Monohydrate" },
+    { "type": "color", "id": "accent_color",       "label": "Accent colour",         "default": "#4B8FD4" },
+    { "type": "color", "id": "accent_text_color",  "label": "Text on accent badge",  "default": "#ffffff" },
+    { "type": "text",  "id": "rating",             "label": "Star rating",           "default": "4.9" },
+    { "type": "text",  "id": "review_count",       "label": "Review count",          "default": "2,341" }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Benefit bullet",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Bullet text", "default": "3g Creatine Monohydrate per sachet" }
+      ]
+    },
+    {
+      "type": "trust_badge",
+      "name": "Trust badge",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon",
+          "options": [
+            { "value": "shield",  "label": "Shield" },
+            { "value": "check",   "label": "Checkmark" },
+            { "value": "truck",   "label": "Truck" },
+            { "value": "refresh", "label": "Guarantee / Refresh" },
+            { "value": "flask",   "label": "Flask / Science" },
+            { "value": "leaf",    "label": "Leaf / Natural" }
+          ],
+          "default": "shield"
+        },
+        { "type": "text", "id": "label", "label": "Badge text", "default": "Third-party tested" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Product Hero" }]
+}
+{% endschema %}

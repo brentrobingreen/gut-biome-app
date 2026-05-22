@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "main": {
+      "type": "zylla-main-product",
+      "blocks": {
+        "b1": { "type": "bullet", "settings": { "text": "5g Marine Collagen per sachet" } },
+        "b2": { "type": "bullet", "settings": { "text": "Vitamin C for 3× better collagen absorption" } },
+        "b3": { "type": "bullet", "settings": { "text": "Hyaluronic Acid + Biotin for complete skin support" } },
+        "b4": { "type": "bullet", "settings": { "text": "Sustainably sourced, third-party tested" } },
+        "t1": { "type": "trust_badge", "settings": { "icon": "shield",  "label": "Marine-sourced collagen" } },
+        "t2": { "type": "trust_badge", "settings": { "icon": "refresh", "label": "30-day guarantee" } },
+        "t3": { "type": "trust_badge", "settings": { "icon": "truck",   "label": "Free monthly delivery" } }
+      },
+      "block_order": ["b1","b2","b3","b4","t1","t2","t3"],
+      "settings": {
+        "eyebrow": "Marine Collagen",
+        "accent_color": "#E8A097",
+        "accent_text_color": "#ffffff",
+        "rating": "4.9",
+        "review_count": "1,543"
+      }
+    },
+    "benefits": {
+      "type": "zylla-product-benefits",
+      "blocks": {
+        "c1": { "type": "benefit", "settings": { "icon": "heart",    "title": "Skin Elasticity",  "text": "Type I and III collagen peptides are clinically shown to improve skin elasticity and reduce visible fine lines within 4 weeks." } },
+        "c2": { "type": "benefit", "settings": { "icon": "star",     "title": "Hair & Nails",     "text": "Biotin and collagen work together to strengthen hair follicles and nail beds from the inside out." } },
+        "c3": { "type": "benefit", "settings": { "icon": "activity", "title": "Joint Comfort",    "text": "Collagen is the primary structural protein in cartilage. Daily supplementation supports joint cushioning and flexibility." } },
+        "c4": { "type": "benefit", "settings": { "icon": "droplet",  "title": "Deep Hydration",   "text": "Hyaluronic Acid binds up to 1,000× its weight in water, keeping skin plump, supple, and hydrated." } }
+      },
+      "block_order": ["c1","c2","c3","c4"],
+      "settings": {
+        "eyebrow": "Why it works",
+        "heading": "Beauty starts from within.",
+        "accent_color": "#E8A097",
+        "accent_text_color": "#ffffff"
+      }
+    },
+    "stats": {
+      "type": "zylla-product-stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "88%", "label": "notice visible skin improvement within 4 weeks" } },
+        "s2": { "type": "stat", "settings": { "number": "92%", "label": "make it part of their morning routine and never miss a day" } },
+        "s3": { "type": "stat", "settings": { "number": "81%", "label": "report stronger, faster-growing nails within 6 weeks" } },
+        "s4": { "type": "stat", "settings": { "number": "4.9", "label": "average star rating across 1,543 verified reviews" } }
+      },
+      "block_order": ["s1","s2","s3","s4"],
+      "settings": {
+        "heading": "The results speak for themselves",
+        "subtext": "Here's what thousands of customers reported after 6 weeks of daily Zylla Glow.",
+        "disclaimer": "*Based on a post-purchase survey of 1,200+ verified customers after 6 weeks of daily use.",
+        "accent_color": "#E8A097"
+      }
+    },
+    "reviews": {
+      "type": "zylla-reviews-carousel",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "quote": "My dermatologist noticed the difference before I even told her I was taking anything. That says it all.", "name": "Sofia R.", "role": "Teacher" } },
+        "r2": { "type": "review", "settings": { "quote": "My nails used to peel constantly. Two months in and they're long and strong for the first time in my adult life.", "name": "Rachel T.", "role": "Marketing Manager" } },
+        "r3": { "type": "review", "settings": { "quote": "I take this every morning in hot water like a tea. It's tasteless, effortless, and my skin genuinely glows.", "name": "Priya N.", "role": "Yoga Instructor" } },
+        "r4": { "type": "review", "settings": { "quote": "Been taking collagen for years in various forms. This sachet format is by far the most convenient and effective.", "name": "Lauren D.", "role": "Nurse" } },
+        "r5": { "type": "review", "settings": { "quote": "Fine lines around my eyes are noticeably reduced. I've become that person who recommends supplements to everyone.", "name": "Caroline H.", "role": "Designer" } }
+      },
+      "block_order": ["r1","r2","r3","r4","r5"],
+      "settings": {
+        "heading": "What our customers say",
+        "accent_color": "#E8A097",
+        "accent_text_color": "#ffffff"
+      }
+    },
+    "comparison": {
+      "type": "zylla-comparison",
+      "settings": {
+        "heading": "Us vs. Them",
+        "subtext": "Marine collagen in a single sachet — precisely dosed, instantly dissolved, and scientifically formulated for absorption."
+      }
+    },
+    "accordion": {
+      "type": "zylla-product-accordion",
+      "blocks": {
+        "a1": { "type": "item", "settings": { "icon": "flask", "heading": "What's Inside",  "content": "<p>Each sachet contains 5g Hydrolysed Marine Collagen (Type I & III), 80mg Vitamin C, 50mg Hyaluronic Acid, and 2,500mcg Biotin. Sustainably sourced from wild-caught fish. No artificial colours, flavours, or sweeteners.</p>" } },
+        "a2": { "type": "item", "settings": { "icon": "use",   "heading": "How to Use",     "content": "<p>Mix one sachet into 200ml of warm or cold water. Take daily in the morning — collagen synthesis is most active in the morning hours. Results compound over 4–8 weeks of consistent use.</p>" } },
+        "a3": { "type": "item", "settings": { "icon": "leaf",  "heading": "The Science",    "content": "<p>Natural collagen production drops 1–1.5% per year from age 25. Marine Collagen Type I is the most bioavailable form — its small peptides absorb more efficiently than bovine collagen. Pairing with Vitamin C is essential, as Vitamin C is a cofactor required for collagen synthesis in the body.</p>" } }
+      },
+      "block_order": ["a1","a2","a3"],
+      "settings": { "eyebrow": "Everything you need to know", "heading": "The Details" }
+    },
+    "pair": {
+      "type": "zylla-pair-with",
+      "blocks": {
+        "p1": { "type": "product", "settings": { "name": "Sleep",  "tagline": "Wind down & restore",    "color_key": "sleep" } },
+        "p2": { "type": "product", "settings": { "name": "Fiber",  "tagline": "Gut health, simplified", "color_key": "fiber" } },
+        "p3": { "type": "product", "settings": { "name": "Energy", "tagline": "Clean morning fuel",     "color_key": "energy" } }
+      },
+      "block_order": ["p1","p2","p3"],
+      "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
+    }
+  },
+  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+}

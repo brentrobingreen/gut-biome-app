@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "main": {
+      "type": "zylla-main-product",
+      "blocks": {
+        "b1": { "type": "bullet", "settings": { "text": "Natural Caffeine from Green Tea & Guarana" } },
+        "b2": { "type": "bullet", "settings": { "text": "L-Theanine for smooth, jitter-free focus" } },
+        "b3": { "type": "bullet", "settings": { "text": "B-Vitamin complex for sustained energy output" } },
+        "b4": { "type": "bullet", "settings": { "text": "Zero sugar, zero crash, zero jitters" } },
+        "t1": { "type": "trust_badge", "settings": { "icon": "check",   "label": "Natural caffeine only" } },
+        "t2": { "type": "trust_badge", "settings": { "icon": "refresh", "label": "30-day guarantee" } },
+        "t3": { "type": "trust_badge", "settings": { "icon": "truck",   "label": "Free monthly delivery" } }
+      },
+      "block_order": ["b1","b2","b3","b4","t1","t2","t3"],
+      "settings": {
+        "eyebrow": "Clean Energy Formula",
+        "accent_color": "#F5C518",
+        "accent_text_color": "#1A1A1A",
+        "rating": "4.9",
+        "review_count": "3,102"
+      }
+    },
+    "benefits": {
+      "type": "zylla-product-benefits",
+      "blocks": {
+        "c1": { "type": "benefit", "settings": { "icon": "lightning", "title": "Clean Energy",   "text": "Natural caffeine from Green Tea is released more gradually than synthetic caffeine, delivering smooth, sustained energy without the spike-and-crash." } },
+        "c2": { "type": "benefit", "settings": { "icon": "activity",  "title": "Laser Focus",    "text": "L-Theanine and caffeine together improve sustained attention and reaction time better than either alone — clinically proven." } },
+        "c3": { "type": "benefit", "settings": { "icon": "refresh",   "title": "No Crash",       "text": "Natural caffeine, L-Theanine, and B-vitamins support a gradual, comfortable energy tail-off rather than a hard crash." } },
+        "c4": { "type": "benefit", "settings": { "icon": "flask",     "title": "B-Vitamin Power","text": "B6 and B12 are essential cofactors in energy metabolism — converting the food you eat into fuel your cells can use." } }
+      },
+      "block_order": ["c1","c2","c3","c4"],
+      "settings": {
+        "eyebrow": "Why it works",
+        "heading": "Energy that respects you.",
+        "accent_color": "#F5C518",
+        "accent_text_color": "#1A1A1A"
+      }
+    },
+    "stats": {
+      "type": "zylla-product-stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "94%", "label": "prefer it over their morning coffee as their daily energy source" } },
+        "s2": { "type": "stat", "settings": { "number": "88%", "label": "feel noticeably energised within 20 minutes of taking it" } },
+        "s3": { "type": "stat", "settings": { "number": "91%", "label": "report no afternoon energy crash" } },
+        "s4": { "type": "stat", "settings": { "number": "3×", "label": "more consistent focus scores vs. coffee alone in user surveys" } }
+      },
+      "block_order": ["s1","s2","s3","s4"],
+      "settings": {
+        "heading": "The results speak for themselves",
+        "subtext": "Here's what thousands of customers reported after 4 weeks of daily Zylla Energy.",
+        "disclaimer": "*Based on a post-purchase survey of 2,500+ verified customers after 4 weeks of daily use.",
+        "accent_color": "#F5C518"
+      }
+    },
+    "reviews": {
+      "type": "zylla-reviews-carousel",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "quote": "I gave up coffee 6 months ago and this is what replaced it. Same energy, zero anxiety, zero crash.", "name": "Michael B.", "role": "Software Engineer" } },
+        "r2": { "type": "review", "settings": { "quote": "The L-Theanine makes all the difference. It's like caffeine with the edges smoothed off. I'm never going back to coffee.", "name": "Lauren A.", "role": "Teacher" } },
+        "r3": { "type": "review", "settings": { "quote": "I take this at 6am before the gym. By 6:30 I'm warm, focused, and ready. No jitters, no racing heart.", "name": "Chris P.", "role": "Personal Trainer" } },
+        "r4": { "type": "review", "settings": { "quote": "I have ADHD and am sensitive to stimulants. This is the only caffeinated product I can take without feeling wired.", "name": "Sophie L.", "role": "Designer" } },
+        "r5": { "type": "review", "settings": { "quote": "My afternoon slump was ruining my productivity. This sachet at 2pm changed everything. No crash, just clean hours.", "name": "Hannah M.", "role": "Lawyer" } }
+      },
+      "block_order": ["r1","r2","r3","r4","r5"],
+      "settings": {
+        "heading": "What our customers say",
+        "accent_color": "#F5C518",
+        "accent_text_color": "#1A1A1A"
+      }
+    },
+    "comparison": {
+      "type": "zylla-comparison",
+      "settings": {
+        "heading": "Us vs. Them",
+        "subtext": "Coffee spikes, canned energy drinks crash. Zylla Energy delivers smooth, sustained focus from natural sources — no compromise."
+      }
+    },
+    "accordion": {
+      "type": "zylla-product-accordion",
+      "blocks": {
+        "a1": { "type": "item", "settings": { "icon": "flask", "heading": "What's Inside",  "content": "<p>Each sachet contains 100mg Natural Caffeine (from Green Tea Extract), 150mg L-Theanine, 250mg Guarana Extract, Vitamin B6 (2.1mg), Vitamin B12 (5mcg), and Pantothenic Acid (18mg). No synthetic caffeine, no sugar, no artificial colours.</p>" } },
+        "a2": { "type": "item", "settings": { "icon": "use",   "heading": "How to Use",     "content": "<p>Mix one sachet with 150–200ml of cold or warm water. Best taken 20–30 minutes before exercise or when you need sustained focus. Avoid taking within 6 hours of bedtime. One sachet per day is the recommended maximum.</p>" } },
+        "a3": { "type": "item", "settings": { "icon": "leaf",  "heading": "The Science",    "content": "<p>The synergy between caffeine and L-Theanine is one of the most consistently proven combinations in sports nutrition research. L-Theanine increases alpha brain waves (calm focus) while caffeine increases alertness — together they produce focused energy without the anxiety that caffeine alone can cause. Natural caffeine from Green Tea is bound to polyphenols, which slow absorption and extend the energy curve.</p>" } }
+      },
+      "block_order": ["a1","a2","a3"],
+      "settings": { "eyebrow": "Everything you need to know", "heading": "The Details" }
+    },
+    "pair": {
+      "type": "zylla-pair-with",
+      "blocks": {
+        "p1": { "type": "product", "settings": { "name": "Creatine", "tagline": "Build & recover faster",    "color_key": "creatine" } },
+        "p2": { "type": "product", "settings": { "name": "Fiber",    "tagline": "Gut health, simplified",   "color_key": "fiber" } },
+        "p3": { "type": "product", "settings": { "name": "Glow",     "tagline": "Collagen from within",     "color_key": "glow" } }
+      },
+      "block_order": ["p1","p2","p3"],
+      "settings": { "eyebrow": "Complete your routine", "heading": "Pair it with" }
+    }
+  },
+  "order": ["main","benefits","stats","reviews","comparison","accordion","pair"]
+}

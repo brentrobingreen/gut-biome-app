@@ -1,0 +1,130 @@
+{% schema %}
+{
+  "name": "Wave Divider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "wave_color",
+      "label": "Front Wave Color",
+      "default": "#EC2869"
+    },
+    {
+      "type": "color",
+      "id": "back_wave_color",
+      "label": "Back Wave Color",
+      "default": "#F9A8D4"
+    },
+    {
+      "type": "range",
+      "id": "wave_speed",
+      "label": "Wave Speed (seconds)",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wave Divider"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="wave-divider-container" style="background-color: {{ section.settings.background_color }};">
+  <div class="wave-wrapper">
+    <div class="wave-strip back-wave" style="animation-duration: {{ section.settings.wave_speed | times: 2 }}s;">
+      {% for i in (1..4) %}
+        <svg class="wave" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="{{ section.settings.back_wave_color }}" d="M0,50 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,0 L0,0 Z"></path>
+        </svg>
+      {% endfor %}
+    </div>
+
+    <div class="wave-strip front-wave" style="animation-duration: {{ section.settings.wave_speed }}s;">
+      {% for i in (1..4) %}
+        <svg class="wave" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+          <path fill="{{ section.settings.wave_color }}" d="M0,50 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,0 L0,0 Z"></path>
+        </svg>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.wave-divider-container {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  z-index: 1;
+  line-height: 0;        /* removes inline-SVG baseline gap */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wave-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+}
+
+.wave-strip {
+  position: absolute;
+  top: 0;
+  display: flex;
+  width: 4800px; /* 4 waves x 1200px */
+  height: 100px;
+  animation-name: waveLoop;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.wave-strip.front-wave {
+  z-index: 2;
+  animation-duration: var(--front-wave-speed, 10s);
+}
+
+.wave-strip.back-wave {
+  z-index: 1;
+  opacity: 0.5; /* optional transparency */
+  animation-duration: var(--back-wave-speed, 20s);
+}
+
+.wave {
+  width: 1200px;
+  height: 100px;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Overlap fix for anti-alias seams */
+.wave-wrapper,
+.wave { height: 101px; }
+
+@keyframes waveLoop {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-1200px); }
+}
+
+/* === Softer section spacing fix === */
+.wave-divider-container{
+  margin-top: -2px !important;
+  margin-bottom: -4px !important;
+}
+
+@media (max-width: 749px){
+  .wave-divider-container{
+    margin-top: -8px !important;
+    margin-bottom: -6px !important;
+  }
+}
+</style>

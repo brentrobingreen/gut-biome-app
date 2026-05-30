@@ -1,0 +1,192 @@
+{% comment %} sections/scrolling-bar.liquid {% endcomment %}
+
+<div class="scrolling-bar-section">
+  <div class="scrolling-bar-track">
+    {% assign taglines = '' %}
+    {% if section.settings.tagline_1 != blank %}
+      {% assign taglines = taglines | append: section.settings.tagline_1 %}
+    {% endif %}
+    {% if section.settings.tagline_2 != blank %}
+      {% assign taglines = taglines | append: '|' | append: section.settings.tagline_2 %}
+    {% endif %}
+    {% if section.settings.tagline_3 != blank %}
+      {% assign taglines = taglines | append: '|' | append: section.settings.tagline_3 %}
+    {% endif %}
+
+    {% assign lines = taglines | split: '|' %}
+    {% assign repeat_count = 12 %}
+
+    {% if section.settings.use_svg_icon and section.settings.svg_icon != blank %}
+      {% assign icon_markup = section.settings.svg_icon %}
+    {% else %}
+      {% assign icon_markup = section.settings.icon_symbol %}
+    {% endif %}
+
+    {% assign is_heading = section.settings.use_heading_text %}
+
+    <div class="scrolling-bar-wrapper">
+      {% for i in (1..repeat_count) %}
+        {% for line in lines %}
+          {% if is_heading %}
+            <h2 class="scrolling-bar-item">
+              <span class="scrolling-text">{{ line }}</span>
+            </h2>
+            <span class="scrolling-bar-item scrolling-icon-only">
+              <span class="scrolling-icon-wrapper">{{ icon_markup }}</span>
+            </span>
+          {% else %}
+            <span class="scrolling-bar-item">
+              <span class="scrolling-text">{{ line }}</span>
+            </span>
+            <span class="scrolling-bar-item scrolling-icon-only">
+              <span class="scrolling-icon-wrapper">{{ icon_markup }}</span>
+            </span>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.scrolling-bar-section {
+  background-color: {{ section.settings.background_color }};
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.scrolling-bar-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left {{ section.settings.speed }}s linear infinite;
+  will-change: transform;
+}
+
+.scrolling-bar-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-weight: bold;
+  font-size: {{ section.settings.text_size }};
+  color: {{ section.settings.text_color }};
+  margin: 0;
+  line-height: 1;
+}
+
+.scrolling-icon-only {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.scrolling-text {
+  display: inline-block;
+  text-align: center;
+}
+
+.scrolling-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Scrolling Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline_1",
+      "label": "Tagline 1",
+      "default": "FREE SHIPPING OVER $50"
+    },
+    {
+      "type": "text",
+      "id": "tagline_2",
+      "label": "Tagline 2",
+      "default": "SUBSCRIBE & SAVE 20%"
+    },
+    {
+      "type": "text",
+      "id": "tagline_3",
+      "label": "Tagline 3",
+      "default": "NEW FLAVOURS JUST DROPPED"
+    },
+    {
+      "type": "text",
+      "id": "icon_symbol",
+      "label": "Emoji icon (fallback)",
+      "default": "⚡"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_svg_icon",
+      "label": "Use custom SVG icon",
+      "default": false
+    },
+    {
+      "type": "html",
+      "id": "svg_icon",
+      "label": "SVG Icon Code",
+      "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"16\" height=\"16\"><path fill=\"currentColor\" d=\"M13 2L3 14h9l-1 8L21 10h-9l1-8z\"/></svg>"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_heading_text",
+      "label": "Use Heading Text Style",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text Size",
+      "options": [
+        { "value": "clamp(12px, 2vw, 16px)", "label": "Small" },
+        { "value": "clamp(14px, 2.5vw, 20px)", "label": "Medium" },
+        { "value": "clamp(16px, 3vw, 24px)", "label": "Large" },
+        { "value": "clamp(18px, 4vw, 32px)", "label": "XL" }
+      ],
+      "default": "clamp(14px, 2.5vw, 20px)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F7FF00"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 185,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Bar"
+    }
+  ]
+}
+{% endschema %}

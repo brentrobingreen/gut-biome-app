@@ -1,0 +1,271 @@
+<section class="testimonials-section full-width" style="background-color: {{ section.settings.background_color }}">
+  <div class="testimonials-inner">
+    <div class="science-header-content">
+      {% if section.settings.subheading != blank %}
+        <p class="science-subheading" style="color: {{ section.settings.subheading_color }}; font-size: {{ section.settings.subheading_size }}px;">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="science-heading" style="color: {{ section.settings.heading_color }}; font-size: {{ section.settings.heading_size }}px;">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+    </div>
+
+    <div class="testimonials-track-wrapper">
+      <div class="testimonials-track">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'testimonial_card' %}
+              <div class="testimonial-card">
+                {% if block.settings.image %}
+                  <img src="{{ block.settings.image | image_url: width: 600 }}" alt="Testimonial image" class="testimonial-card-image" loading="lazy">
+                {% endif %}
+                <div class="testimonial-content">
+                  {% if block.settings.stars %}
+                    <div class="testimonial-stars" style="font-size: {{ section.settings.stars_size }}px;">★★★★★</div>
+                  {% endif %}
+                  <p class="testimonial-text" style="font-size: {{ section.settings.testimonial_text_size }}px;">{{ block.settings.testimonial_text }}</p>
+                  <p class="testimonial-name" style="font-size: {{ section.settings.testimonial_name_size }}px;">{{ block.settings.name }}</p>
+                  {% if block.settings.role != blank %}
+                    <p class="testimonial-role" style="font-size: {{ section.settings.testimonial_role_size }}px;">{{ block.settings.role }}</p>
+                  {% endif %}
+                </div>
+              </div>
+
+            {% when 'image_card' %}
+              <div class="testimonial-image-card">
+                {% if block.settings.image %}
+                  <img src="{{ block.settings.image | image_url: width: 600 }}" alt="Testimonial Image" />
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Shared card height so image-only cards match testimonial cards */
+.testimonials-section{
+  --card-height: 380px; /* tweak this number to taste */
+  overflow: visible;
+  padding: 20px 0 40px; /* 20px top, 40px bottom */
+}
+@media (max-width: 990px){
+  .testimonials-section{ --card-height: 340px; }
+}
+@media (max-width: 600px){
+  .testimonials-section{ --card-height: 300px; }
+}
+
+.full-width {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.testimonials-inner {
+  padding: 0 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Updated heading styles from science section */
+.science-header-content {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: clamp(900px, 80vw, 1300px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.science-heading {
+  font-weight: 800;
+  margin-top: 0 !important;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.science-subheading {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 1px !important;
+  opacity: 0.85;
+}
+
+.testimonials-track-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: 12px;
+  touch-action: pan-x;
+  cursor: grab;
+}
+
+.testimonials-track-wrapper.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.testimonials-track-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.testimonials-track > * {
+  scroll-snap-align: start;
+}
+
+/* Cards share the same height */
+.testimonial-card,
+.testimonial-image-card{
+  height: var(--card-height);
+}
+
+.testimonial-card {
+  flex: 0 0 auto;
+  width: clamp(280px, 60vw, 600px);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.testimonial-card-image {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.testimonial-content {
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.testimonial-stars { color: #000; margin-bottom: 10px; }
+.testimonial-text { margin-bottom: 10px; color: #000; }
+.testimonial-name { font-weight: bold; text-transform: uppercase; margin-top: 10px; color: #000; }
+.testimonial-role { color: #666; }
+
+/* Image-only card now shares height with testimonials */
+.testimonial-image-card {
+  flex: 0 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const wrapper = document.querySelector(".testimonials-track-wrapper");
+  if(!wrapper) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  wrapper.addEventListener("mousedown", (e) => {
+    isDown = true;
+    wrapper.classList.add("dragging");
+    startX = e.pageX - wrapper.offsetLeft;
+    scrollLeft = wrapper.scrollLeft;
+  });
+  wrapper.addEventListener("mouseleave", () => {
+    isDown = false;
+    wrapper.classList.remove("dragging");
+  });
+  wrapper.addEventListener("mouseup", () => {
+    isDown = false;
+    wrapper.classList.remove("dragging");
+  });
+  wrapper.addEventListener("mousemove", (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - wrapper.offsetLeft;
+    const walk = (x - startX) * 1;
+    wrapper.scrollLeft = scrollLeft - walk;
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials Slider",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#ff0000" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Don't just take our word for it" },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#ffffff" },
+    { "type": "range", "id": "heading_size", "label": "Heading size (px)", "min": 16, "max": 80, "default": 32 },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    { "type": "color", "id": "subheading_color", "label": "Subheading color", "default": "#ffffff" },
+    { "type": "range", "id": "subheading_size", "label": "Subheading size (px)", "min": 12, "max": 40, "default": 18 },
+
+    /* NEW: size controls for card content */
+    { "type": "range", "id": "stars_size", "label": "Stars size (px)", "min": 12, "max": 40, "default": 20 },
+    { "type": "range", "id": "testimonial_text_size", "label": "Testimonial text size (px)", "min": 12, "max": 28, "default": 16 },
+    { "type": "range", "id": "testimonial_name_size", "label": "Name text size (px)", "min": 10, "max": 28, "default": 14 },
+    { "type": "range", "id": "testimonial_role_size", "label": "Role text size (px)", "min": 10, "max": 24, "default": 12 }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial_card",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image (optional)" },
+        { "type": "checkbox", "id": "stars", "label": "Show 5 stars", "default": true },
+        { "type": "textarea", "id": "testimonial_text", "label": "Testimonial Text" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Customer Name" },
+        { "type": "text", "id": "role", "label": "Role or Note (e.g. Verified Buyer)", "default": "Verified Buyer" }
+      ]
+    },
+    {
+      "type": "image_card",
+      "name": "Image Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Testimonials Slider", "blocks": [] }
+  ]
+}
+{% endschema %}

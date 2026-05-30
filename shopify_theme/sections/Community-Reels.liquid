@@ -1,0 +1,240 @@
+{% comment %}
+  Community Reels — matches Why Joule mobile heading, dots on mobile, ~3.2 reels
+{% endcomment %}
+
+<section class="community-reels-section" style="background-color: {{ section.settings.background_color }};">
+  <div class="community-reels-inner" style="max-width: 1400px; margin: 0 auto;">
+    <div class="reels-left">
+      <div class="reels-left-content">
+        {% if section.settings.caption != blank %}
+          <p class="caption-with-letter-spacing" style="font-size: {{ section.settings.caption_size }}px;">
+            {{ section.settings.caption }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h2
+            class="reels-heading"
+            style="--heading-desktop: {{ section.settings.heading_font_size }}px;"
+          >
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        <div class="reels-icons" aria-label="Social links">
+          {% for block in section.blocks %}
+            {% if block.type == 'social_icon' %}
+              <a href="{{ block.settings.link }}" target="_blank" rel="noopener">
+                <img src="{{ block.settings.icon | image_url: width: 80 }}" width="40" height="40" alt="Social Icon">
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="reels-right">
+      <button class="reel-prev" onclick="scrollReelCarousel('left')" aria-label="Previous">‹</button>
+
+      <div class="reel-carousel" id="reelCarousel">
+        {% for block in section.blocks %}
+          {% if block.type == 'reel' %}
+            <div class="reel-slide">
+              <video
+                src="{{ block.settings.video_url }}"
+                {% if block.settings.poster_image != blank %}
+                  poster="{{ block.settings.poster_image | image_url }}"
+                {% endif %}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+              ></video>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <button class="reel-next" onclick="scrollReelCarousel('right')" aria-label="Next">›</button>
+
+      <!-- Mobile pagination dots -->
+      <div class="reel-pagination" id="reelPagination" aria-label="Carousel pagination"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* --- COMMUNITY REELS --- */
+.community-reels-section{ padding:60px 0 40px; overflow:hidden; }
+
+.community-reels-inner{
+  display:flex; flex-wrap:wrap;
+  justify-content:center; align-items:center;
+  column-gap:40px; row-gap:20px; width:100%; padding:0 2vw;
+}
+
+.reels-left{ flex:1 1 100%; max-width:100%; }
+
+.reels-left-content{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  margin:0 auto; max-width:min(92vw,900px);
+}
+
+.caption-with-letter-spacing{
+  letter-spacing:0.1em; font-weight:600; color:#000;
+  margin:0 0 10px 0;
+  font-size:clamp(14px, 4.3vw, {{ section.settings.caption_size }}px);
+  line-height:1.45;
+}
+
+/* Heading:
+   - Desktop uses setting
+   - Mobile EXACTLY matches Why Joule: clamp(28px, 8.2vw, 36px) */
+.reels-heading{
+  font-weight:800; line-height:1.02; margin:0 0 16px 0; padding:0;
+  font-size: var(--heading-desktop);
+}
+@media (max-width: 749px){
+  .reels-heading{
+    font-size: clamp(28px, 8.2vw, 36px) !important;
+    line-height: 1.12 !important;
+    margin: 4px 0 10px;
+  }
+}
+
+.reels-icons{ display:flex; gap:16px; justify-content:center; align-items:center; }
+.reels-icons a img{ width:48px; height:48px; display:block; }
+
+/* Carousel */
+.reels-right{
+  flex:1 1 100%; max-width:100%; position:relative;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  pointer-events:none;
+}
+.reel-carousel{
+  display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory;
+  scroll-behavior:smooth; scrollbar-width:none;
+  width:100%; padding:0 28px; margin:0 -28px;
+  pointer-events:auto;
+}
+.reel-carousel::-webkit-scrollbar{ display:none; }
+
+.reel-slide{
+  flex:0 0 calc((100% - 30px)/4); /* ~4 across desktop */
+  scroll-snap-align:start; border-radius:16px; overflow:hidden;
+  background:#f0f0f0; transform:scale(.93); transform-origin:center;
+}
+.reel-slide video{ width:100%; height:auto; object-fit:cover; aspect-ratio:9/16; display:block; }
+
+/* Arrows (hidden on mobile) */
+.reel-prev,.reel-next{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:#000; color:#fff; border:none; border-radius:50%;
+  font-size:1.5rem; width:44px; height:44px; cursor:pointer; z-index:2;
+  display:flex; align-items:center; justify-content:center; pointer-events:auto;
+}
+.reel-prev{ left:8px; }
+.reel-next{ right:8px; }
+
+/* Dots (mobile only) */
+.reel-pagination{ display:none; gap:8px; justify-content:center; align-items:center; }
+.reel-pagination span{
+  width:8px; height:8px; border-radius:50%; background:#d7d7d7; display:inline-block;
+}
+.reel-pagination span.active{ background:#111; }
+
+/* Tablet */
+@media(max-width:1024px){
+  .reel-slide{ flex:0 0 auto; min-width:280px; }
+  .reels-icons a img{ width:40px; height:40px; }
+}
+
+/* Mobile */
+@media(max-width:640px){
+  .community-reels-section{ padding:48px 0 28px; }
+  .reel-carousel{ padding:0 20px; margin:0 -20px; }
+  /* Show ~3.2 reels across mobile */
+  .reel-slide{ flex:0 0 30vw; min-width:30vw; }
+  /* No arrows on mobile; use dots */
+  .reel-prev,.reel-next{ display:none; }
+  .reel-pagination{ display:flex; }
+  .reels-icons a img{ width:36px; height:36px; }
+}
+</style>
+
+<script>
+function scrollReelCarousel(direction='right'){
+  const carousel=document.getElementById('reelCarousel');
+  if(!carousel) return;
+  const slide=carousel.querySelector('.reel-slide');
+  const slideWidth=slide?(slide.offsetWidth+10):carousel.clientWidth*0.8;
+  const scrollAmount=direction==='left'?-slideWidth:slideWidth;
+  carousel.scrollBy({left:scrollAmount,behavior:'smooth'});
+}
+
+/* Build & sync mobile dots */
+document.addEventListener('DOMContentLoaded',function(){
+  const carousel=document.getElementById('reelCarousel');
+  const dotsWrap=document.getElementById('reelPagination');
+  if(!carousel || !dotsWrap) return;
+
+  const slides=[...carousel.querySelectorAll('.reel-slide')];
+  if(!slides.length) return;
+
+  dotsWrap.innerHTML='';
+  slides.forEach((_,i)=>{
+    const dot=document.createElement('span');
+    dot.addEventListener('click',()=> {
+      const padLeft=parseInt(getComputedStyle(carousel).paddingLeft)||0;
+      const targetLeft=slides[i].offsetLeft - padLeft;
+      carousel.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    });
+    dotsWrap.appendChild(dot);
+  });
+
+  const setActive=()=>{
+    const gap=10;
+    const slideW=slides[0].offsetWidth+gap;
+    const idx=Math.round(carousel.scrollLeft/slideW);
+    [...dotsWrap.children].forEach((d,i)=>d.classList.toggle('active', i===idx));
+  };
+  setActive();
+  carousel.addEventListener('scroll', ()=> { window.requestAnimationFrame(setActive); });
+  window.addEventListener('resize', setActive);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Community Reels",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#ffffff" },
+    { "type": "range", "id": "heading_font_size", "label": "Heading Font Size – Desktop (px)", "min": 24, "max": 96, "step": 1, "default": 48 },
+    { "type": "range", "id": "caption_size", "label": "Caption Font Size (px)", "min": 10, "max": 30, "step": 1, "default": 16 },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "JOIN OUR COMMUNITY" },
+    { "type": "text", "id": "caption", "label": "Caption", "default": "SEE HOW OTHERS ARE MOVING WITH JOULE" }
+  ],
+  "blocks": [
+    {
+      "type": "social_icon",
+      "name": "Social Icon",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon Image" },
+        { "type": "url", "id": "link", "label": "Link URL" }
+      ]
+    },
+    {
+      "type": "reel",
+      "name": "Reel",
+      "settings": [
+        { "type": "url", "id": "video_url", "label": "Video URL" },
+        { "type": "image_picker", "id": "poster_image", "label": "Poster Image (Optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Community Reels", "category": "Custom" }
+  ]
+}
+{% endschema %}

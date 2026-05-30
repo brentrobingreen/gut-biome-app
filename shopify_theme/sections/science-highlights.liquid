@@ -1,0 +1,374 @@
+<section class="science-section" style="background-color: {{ section.settings.background_color }}">
+  <div class="page-width">
+    <div class="science-header-content">
+      {% if section.settings.subheading != blank %}
+        <p class="science-subheading" style="font-size: {{ section.settings.subheading_size }}px;">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="science-heading" style="font-size: {{ section.settings.heading_size }}px;">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+    </div>
+
+    <!-- Buttons -->
+    <div class="ingredient-buttons" id="ingredientButtons" aria-label="Ingredients">
+      {% assign buttons = section.blocks | where: "type", "ingredient_button" %}
+      {% for block in buttons %}
+        {% assign is_active = forloop.first %}
+        <button 
+          class="ingredient-button{% if is_active %} active{% endif %}"  
+          data-ingredient="{{ block.settings.ingredient_handle | downcase | strip }}"
+          data-color="{{ block.settings.button_color }}"
+          data-active-color="{{ block.settings.active_color }}"
+          data-gummy="{{ block.settings.gummy_image | image_url }}"
+          style="
+            background-color: {% if is_active %}{{ block.settings.active_color }}{% else %}{{ block.settings.button_color }}{% endif %};
+            color: #000;
+            border: {% if is_active %}2px solid #000{% else %}none{% endif %};
+          ">
+          {{ block.settings.ingredient_label }}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- Stats + Gummy -->
+    <div class="science-stats-wrapper">
+      <div class="stats-with-gummy">
+        <!-- Center gummy (auto-swaps on button click) -->
+        <div class="gummy-display-wrapper">
+          {% assign first_gummy_image = buttons.first.settings.gummy_image %}
+          {% if first_gummy_image %}
+            <img 
+              id="gummy-image" 
+              src="{{ first_gummy_image | image_url: width: 600 }}" 
+              alt="Gummy Image" 
+              class="gummy-display-image" 
+            />
+          {% endif %}
+        </div>
+
+        <div class="groups-wrapper">
+          {% assign ingredients = section.blocks | where: "type", "stat_box" | map: "settings" | map: "ingredient_handle" | compact | uniq %}
+          {% for ingredient_handle in ingredients %}
+            {% assign handle = ingredient_handle | downcase | strip %}
+            <div class="ingredient-group{% if forloop.first %} active{% endif %}" data-ingredient="{{ handle }}">
+              {% for block in section.blocks %}
+                {% if block.type == "stat_box" and block.settings.ingredient_handle == ingredient_handle %}
+                  <div class="science-stat-box" style="background-color: {{ block.settings.box_background_color }}; color: {{ block.settings.text_color }};">
+                    <div class="stat-left">
+                      {% if block.settings.image %}
+                        <img src="{{ block.settings.image | image_url: width: 100, height: 100 }}" alt="Stat icon" />
+                      {% else %}
+                        <div class="stat-number">{{ block.settings.number }}</div>
+                      {% endif %}
+                    </div>
+                    <div class="stat-right">
+                      <h4>{{ block.settings.heading }}</h4>
+                      <p>{{ block.settings.subtext }}</p>
+                      {% if block.settings.source_url != blank %}
+                        <small><a href="{{ block.settings.source_url }}" target="_blank" rel="noopener">{{ block.settings.source }}</a></small>
+                      {% else %}
+                        <small>{{ block.settings.source }}</small>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ----------------------------
+   SCIENCE HIGHLIGHTS (base)
+----------------------------- */
+.science-section { padding: 28px 0 0; overflow: hidden; }
+
+.science-header-content {
+  text-align: center;
+  margin-bottom: 28px;
+  max-width: 940px;
+  margin-inline: auto;
+}
+.science-heading {
+  font-weight: 900;
+  margin: 0 0 10px 0;
+  color: #fff;
+}
+.science-subheading {
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  padding-top: 0;
+  opacity: 0.9;
+}
+
+/* Buttons row (desktop/tablet defaults) */
+.ingredient-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px auto 36px;
+}
+.ingredient-button {
+  font-family: var(--font-button-family, "Suisse Int'l", sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #000;
+  padding: 12px 22px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: filter .2s ease, transform .2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,.08);
+  min-width: 128px;
+  background: #f9ec42;
+}
+.ingredient-button:hover { filter: brightness(.95); }
+.ingredient-button.active { border: 2px solid #000; }
+
+/* Layout */
+.science-stats-wrapper { position: relative; padding-bottom: 60px; }
+.stats-with-gummy { position: relative; }
+
+.gummy-display-wrapper {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  pointer-events: none; z-index: 2;
+}
+.gummy-display-image {
+  width: 220px; height: auto; object-fit: contain;
+  animation: floatGummy 3s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.15));
+}
+@keyframes floatGummy { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* Stat grid */
+.groups-wrapper { position: relative; z-index: 1; }
+.ingredient-group {
+  display: none;
+  opacity: 0;
+  transition: opacity .35s ease;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.ingredient-group.active { display: grid; opacity: 1; }
+
+/* Stat box */
+.science-stat-box {
+  display: flex; align-items: center;
+  gap: 18px; padding: 22px;
+  border-radius: 22px;
+}
+.stat-left { width: 110px; text-align: center; flex: 0 0 110px; }
+.stat-left img { max-width: 84px; height: auto; }
+.stat-number {
+  font-size: 54px; font-weight: 900; font-style: italic;
+  font-family: var(--font-heading-family, "Suisse Int'l", sans-serif);
+}
+.stat-right { flex: 1 1 auto; }
+.stat-right h4 { font-weight: 800; margin: 2px 0 6px; }
+.stat-right p { margin: 0 0 6px; }
+.stat-right small { font-size: 12px; color: rgba(0,0,0,.64); }
+
+/* ============ MOBILE (≤ 749px) — stacked + compact text ============ */
+@media screen and (max-width: 749px){
+  .science-section { padding: 16px 0 12px; overflow: hidden; }
+  .science-header-content { margin-bottom: 12px; padding-inline: 16px; }
+
+  .science-subheading{
+    font-size: clamp(12px, 3.6vw, {{ section.settings.subheading_size }}px) !important;
+    line-height: 1.4 !important;
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+
+  .science-heading{
+    font-size: clamp(26px, 7.2vw, 32px) !important;
+    line-height: 1.12 !important;
+    margin: 2px 0 8px;
+  }
+
+  /* Buttons: single line, all visible */
+  .ingredient-buttons{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px 8px;
+    margin: 4px 0 12px;
+    overflow: hidden;
+  }
+  .ingredient-button{
+    flex: 1 1 0;
+    min-width: 0 !important;
+    padding: 10px 6px;
+    font-size: clamp(10px, 2.8vw, 12px);
+    line-height: 1.1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-radius: 9999px;
+  }
+
+  /* Keep desktop-style grid (2x2) */
+  .groups-wrapper{ padding-inline: 10px; }
+  .ingredient-group{
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px;
+  }
+
+  /* Gummy smaller so it doesn’t cover text */
+  .gummy-display-image{ width: 110px; }
+
+  /* Stat boxes stacked + compact */
+  .science-stat-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 10px 6px 12px;
+    border-radius: 14px;
+    gap: 4px;
+  }
+
+  .stat-left{
+    width: 100%;
+    flex-basis: auto;
+    text-align: center;
+    margin-bottom: 2px;
+  }
+  .stat-left img{ max-width: 46px; }
+  .stat-number{
+    font-size: clamp(28px, 8.5vw, 38px);
+    margin-bottom: 2px;
+    line-height: 1;
+  }
+
+  .stat-right{
+    width: 100%;
+    padding: 0;
+  }
+  .stat-right h4{
+    font-size: clamp(13px, 3.7vw, 15px);
+    line-height: 1.2;
+    margin: 0 0 3px;
+  }
+  
+  /* HIDE supporting text on mobile */
+  .stat-right p{
+    display: none !important;
+  }
+
+  .stat-right small{
+    display: block;
+    font-size: clamp(10px, 2.8vw, 12px);
+    opacity: 0.8;
+  }
+
+  .science-stats-wrapper{ padding-bottom: 8px; }
+}
+
+/* Large screens */
+@media screen and (min-width: 1200px){
+  .gummy-display-image{ width: 260px; }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".ingredient-button");
+  const groups = document.querySelectorAll(".ingredient-group");
+  const gummyImage = document.getElementById("gummy-image");
+
+  // Ensure only the active group is visible on load
+  groups.forEach(group => {
+    group.style.display = group.classList.contains("active") ? "grid" : "none";
+  });
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const ingredient = button.dataset.ingredient;
+      const newGummy = button.getAttribute("data-gummy");
+
+      // Reset buttons
+      buttons.forEach(btn => {
+        btn.classList.remove("active");
+        btn.style.backgroundColor = btn.getAttribute("data-color") || "#f9ec42";
+        btn.style.border = "none";
+      });
+
+      // Activate clicked button
+      button.classList.add("active");
+      button.style.backgroundColor = button.getAttribute("data-active-color") || "#ffffff";
+      button.style.border = "2px solid #000";
+
+      // Toggle stat boxes
+      groups.forEach(group => {
+        const match = group.dataset.ingredient === ingredient;
+        group.classList.toggle("active", match);
+        group.style.display = match ? "grid" : "none";
+      });
+
+      // Swap gummy image
+      if (newGummy && gummyImage) gummyImage.src = newGummy;
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Science Highlights",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#69ABF2" },
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "TAKE A BITE OF THE SCIENCE" },
+    { "type": "text", "id": "subheading", "label": "Section Subheading", "default": "NOT YOUR AVERAGE GUMMY. WE BUILT OUR'S FROM THE GROUND UP" },
+    { "type": "range", "id": "heading_size", "label": "Heading Font Size (px)", "min": 28, "max": 90, "step": 1, "default": 64 },
+    { "type": "range", "id": "subheading_size", "label": "Caption Font Size (px)", "min": 10, "max": 30, "step": 1, "default": 16 }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient_button",
+      "name": "Ingredient Button",
+      "settings": [
+        { "type": "text", "id": "ingredient_handle", "label": "Ingredient Handle", "default": "creatine" },
+        { "type": "text", "id": "ingredient_label", "label": "Button Label", "default": "Creatine" },
+        { "type": "color", "id": "button_color", "label": "Button Color", "default": "#ffffff" },
+        { "type": "color", "id": "active_color", "label": "Active Button Color", "default": "#ffffff" },
+        { "type": "image_picker", "id": "gummy_image", "label": "Gummy Image" }
+      ]
+    },
+    {
+      "type": "stat_box",
+      "name": "Stat Box",
+      "settings": [
+        { "type": "text", "id": "ingredient_handle", "label": "Associated Ingredient Handle", "default": "creatine" },
+        { "type": "image_picker", "id": "image", "label": "Optional Icon/Image" },
+        { "type": "text", "id": "number", "label": "Fallback Number (if no image)", "default": "12%" },
+        { "type": "text", "id": "heading", "label": "Stat Heading", "default": "Increased Muscle Mass" },
+        { "type": "textarea", "id": "subtext", "label": "Supporting Text", "default": "Shown to increase lean body mass during resistance training." },
+        { "type": "text", "id": "source", "label": "Source", "default": "J Int Soc Sports Nutr. 2012" },
+        { "type": "url", "id": "source_url", "label": "Source Link" },
+        { "type": "color", "id": "box_background_color", "label": "Box Background Color", "default": "#F2F2F2" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Science Highlights" }]
+}
+{% endschema %}
